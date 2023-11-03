@@ -70,7 +70,7 @@ input,
 select,
 textarea {
     resize: none;
-    font-family: 'Gotham', sans-serif
+    font-family: 'Lexend', sans-serif
 }
 
 select,
@@ -99,7 +99,7 @@ h6 {
     padding: 0;
     font-weight: 700;
     color: #202342;
-    font-family: 'Gotham', sans-serif
+    font-family: 'Lexend', sans-serif
 }
 
 ol,
@@ -382,7 +382,7 @@ p {
 .h2,
 .h3 {
     color: #1b3133;
-    font-family: 'Gotham', sans-serif
+    font-family: 'Lexend', sans-serif
 }
 
 .h2 {
@@ -407,9 +407,11 @@ p {
     font-size: 20px;
     line-height: 1.35;
     color: #1b3133;
-    font-family: 'Gotham', sans-serif
+    font-family: 'Lexend', sans-serif
 }
-
+.heading-status{
+    color: var(--darkpink);
+}
 .h5 {
     font-size: 18px;
     font-weight: 600
@@ -428,27 +430,27 @@ p {
 }
 
 .weight-300 {
-    font-weight: 300
+    font-weight: 300 !important
 }
 
 .weight-400 {
-    font-weight: 400
+    font-weight: 400 !important
 }
 
 .weight-500 {
-    font-weight: 500
+    font-weight: 500 !important
 }
 
 .weight-600 {
-    font-weight: 600
+    font-weight: 600 !important
 }
 
 .weight-700 {
-    font-weight: 700
+    font-weight: 700 !important
 }
 
 .weight-800 {
-    font-weight: 800
+    font-weight: 800 !important
 }
 
 .height-auto {
@@ -514,6 +516,10 @@ p {
 
 .min-height-200px {
     min-height: 200px
+}
+
+.min-height-150px {
+    min-height: 150px
 }
 
 .bg-cover {
@@ -1813,6 +1819,24 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     border-color: #E7B6B6;
     color: #fff;
 }
+
+.lexend {
+    font-family: 'Lexend', sans-serif;
+} 
+
+.lexend-deca{
+    font-family: 'Lexend Deca', sans-serif !important;
+} 
+
+.lexend-exa{
+    font-family: 'Lexend Exa', sans-serif !important;
+} 
+
+.poppins {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+
 
 a, a:-webkit-any-link {
     text-decoration: none;
