@@ -409,7 +409,7 @@ p {
     color: #1b3133;
     font-family: 'Lexend', sans-serif
 }
-.heading-status{
+.color-darkpink{
     color: var(--darkpink);
 }
 .h5 {
@@ -1836,7 +1836,21 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     font-family: 'Poppins', sans-serif !important;
 }
 
+.doc-status {
+    border-radius: 15px;
+    font-weight:600;
+    font-family: 'Lexend Deca';
+    color: #fff;
+    letter-spacing: 0.0619rem;
+}
 
+.doc-status-pending {
+    background: var(--blue);
+}
+
+.doc-status-success {
+    background: var(--green); 
+}
 
 a, a:-webkit-any-link {
     text-decoration: none;
