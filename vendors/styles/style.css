@@ -1788,6 +1788,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 .chat-area {
     min-height: 400px;
+    max-height: 600px;
     overflow-y: auto;
 }
 
