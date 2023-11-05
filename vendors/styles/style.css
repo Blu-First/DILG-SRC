@@ -1872,6 +1872,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     overflow:hidden
   }
 
+   .placeholder-wrap::placeholder{
+    width: calc(100% - 1px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   .send-chat-area .type-area .send-msg{
     display: flex;
     /* justify-self: end; */
@@ -1888,10 +1895,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
-}
-
-::-ms-input-placeholder, ::placeholder{
-    color: red;
 }
 
 .logo {
