@@ -1819,7 +1819,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 .chat-area .incoming .bubble p{
     background: lightgray;
-    color: #fff;
+    color: #000;
     border-radius: 18px 18px 18px 0px;
 }
 
