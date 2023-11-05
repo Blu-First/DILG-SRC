@@ -1810,7 +1810,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 
 .chat-area .chat p{
     word-break: break-all;
-    padding: 8px 16px;
+    padding: 16px 24px;
 }
 
 .chat-area .incoming .bubble{
@@ -1861,12 +1861,6 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     align-content: center;
   } */
 
-  .send-chat-area .type-area textarea::placeholder{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   .send-chat-area .type-area textarea{
     font-size: 1.4rem;
     font-weight: 500;
@@ -1894,6 +1888,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
+}
+
+::-ms-input-placeholder, ::placeholder{
+    color: red;
 }
 
 .logo {
