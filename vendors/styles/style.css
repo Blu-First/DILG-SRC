@@ -1792,13 +1792,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     overflow-y: auto;
 }
 
-/* .chat-area .bubble{
-    overflow-wrap: break-word;
-} */
+.chat-area .bubble{
+    /* overflow-wrap: break-word; */
+    max-width: 60%;
+}
 
 .chat-area .outgoing .bubble{
     margin-left: auto;
-    max-width: calc(100% - 230px);
+    /* max-width: calc(100% - 230px); */
 }
 
 .chat-area .outgoing .bubble p{
@@ -1808,13 +1809,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .chat-area .chat p{
-    word-wrap: break-word;
+    word-break: break-all;
     padding: 8px 16px;
 }
 
 .chat-area .incoming .bubble{
     margin-right: auto;
-    max-width: calc(100% - 230px);
 }
 
 .chat-area .incoming .bubble p{
@@ -1861,6 +1861,12 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     align-content: center;
   } */
 
+  .send-chat-area .type-area textarea::placeholder{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .send-chat-area .type-area textarea{
     font-size: 1.4rem;
     font-weight: 500;
@@ -1881,6 +1887,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     align-items: center;
     align-content: center;
     justify-content: center;
+}
+
+.truncate-text{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
 }
 
 .logo {
