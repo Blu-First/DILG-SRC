@@ -1786,6 +1786,102 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     justify-content: flex-end; 
 }
 
+.chat-area {
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+/* .chat-area .bubble{
+    overflow-wrap: break-word;
+} */
+
+.chat-area .outgoing .bubble{
+    margin-left: auto;
+    max-width: calc(100% - 230px);
+}
+
+.chat-area .outgoing .bubble p{
+    background: var(--darkpink);
+    color: #fff;
+    border-radius: 18px 18px 0 18px;
+}
+
+.chat-area .chat p{
+    word-wrap: break-word;
+    padding: 8px 16px;
+}
+
+.chat-area .incoming .bubble{
+    margin-right: auto;
+    max-width: calc(100% - 230px);
+}
+
+.chat-area .incoming .bubble p{
+    background: lightgray;
+    color: #fff;
+    border-radius: 18px 18px 18px 0px;
+}
+
+.send-chat-area{
+    height: 100px;
+    justify-content: flex-start;
+    align-items: end;
+    /* align-items: center;
+    align-content: center; */
+}
+
+.send-chat-area .add-attachment{
+    display: flex;
+    width: 75px;
+    height: 70px;
+    flex-shrink: 0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.send-chat-area button{
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.send-chat-area .type-area{
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
+    border-radius: 15px;
+    background-color: #f5f5f5;
+  }
+
+  /* .send-chat-area .type-area textarea{
+    align-items: center;
+    align-content: center;
+  } */
+
+  .send-chat-area .type-area textarea{
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.2;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 15px;
+    padding: 0.6rem 0 0 2.5rem;
+    overflow:hidden
+  }
+
+  .send-chat-area .type-area .send-msg{
+    display: flex;
+    /* justify-self: end; */
+    width: 75px;
+    /* height: 70px; */
+    flex-shrink: 0;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
 .logo {
     height: 35px;
     min-width: 35px;
@@ -1844,6 +1940,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     letter-spacing: 0.0619rem;
 }
 
+card-doc-status{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .doc-status-pending {
     background: var(--blue);
 }
@@ -1851,6 +1955,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 .doc-status-success {
     background: var(--green); 
 }
+
+
 
 a, a:-webkit-any-link {
     text-decoration: none;
