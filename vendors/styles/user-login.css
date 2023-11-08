@@ -101,11 +101,11 @@
   }
   
   .icon-user {
-    background: url('/vendors/images/person.svg');
+    background: url('/vendors/images/icon-person.svg');
   }
   
   .icon-lock {
-    background: url('/vendors/images/lock.svg');
+    background: url('/vendors/images/icon-lock.svg');
   }
   
   .icon-user, .icon-lock{
