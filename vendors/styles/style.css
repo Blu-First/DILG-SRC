@@ -1859,7 +1859,7 @@ i.icon-search{
     justify-content: center;
 }
 
-.table-util button, .send-chat-area button {
+.table-util button, .send-chat-area button, .btn-tooltip {
     padding: 0;
     border: none;
     background: none;
@@ -1997,13 +1997,28 @@ i.icon-search{
     width: 250px;
 }
 
-.card-box.timeline .selected{
+.card-box.timeline .active, .nav-link.active{
     font-weight: 700 !important;
     border-width: 2px;
     border-style: solid;
     border-radius: 5px;
     border-color: var(--border);
     border-left: 5px solid var(--darkpink);
+    color: var(--darkpink);
+}
+
+.small-note{
+    font-size: 0.75rem;
+}
+
+.upload-file-border {
+    border-color: var(--darkpink);
+    border-style: dotted;
+    border-width: 2px;
+}
+
+.breadcrumb-item.active {
+    border-bottom: 4px solid var(--darkpink);
 }
 
 a, a:-webkit-any-link {
