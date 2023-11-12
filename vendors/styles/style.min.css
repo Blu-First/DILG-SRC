@@ -992,8 +992,8 @@ textarea.form-control {
 }
 
 .breadcrumb-item.active {
-    color: #1b00ff;
-    font-weight: 500
+    color: var(--darkpink);
+    font-weight: 600
 }
 
 .breadcrumb-item a {

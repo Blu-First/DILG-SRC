@@ -3133,8 +3133,8 @@ fieldset:disabled a.btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #1b00ff;
-    border-color: #1b00ff
+    background-color: var(--darkpink);
+    border-color: var(--darkpink)
 }
 
 .btn-primary:hover {
@@ -5778,12 +5778,14 @@ fieldset:disabled a.btn {
 }
 
 .breadcrumb-item+.breadcrumb-item {
-    padding-left: .5rem
+    padding-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
     display: inline-block;
     padding-right: .5rem;
+    margin-right: 0.5rem;
     color: #6c757d;
     content: "/"
 }
@@ -5793,7 +5795,7 @@ fieldset:disabled a.btn {
 }
 
 .breadcrumb-item.active {
-    color: #6c757d
+    color: var(--darkpink);
 }
 
 .pagination {

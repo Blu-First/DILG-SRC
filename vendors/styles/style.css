@@ -326,7 +326,7 @@ p {
 }
 
 .mb-5 {
-    margin-bottom: 5px !important
+    margin-bottom: 5px 
 }
 
 .mr-10 {
@@ -430,27 +430,27 @@ p {
 }
 
 .weight-300 {
-    font-weight: 300 !important
+    font-weight: 300 
 }
 
 .weight-400 {
-    font-weight: 400 !important
+    font-weight: 400 
 }
 
 .weight-500 {
-    font-weight: 500 !important
+    font-weight: 500 
 }
 
 .weight-600 {
-    font-weight: 600 !important
+    font-weight: 600 
 }
 
 .weight-700 {
-    font-weight: 700 !important
+    font-weight: 700 
 }
 
 .weight-800 {
-    font-weight: 800 !important
+    font-weight: 800 
 }
 
 .height-auto {
@@ -1039,8 +1039,8 @@ textarea.form-control {
 }
 
 .breadcrumb-item.active {
-    color: #1b00ff;
-    font-weight: 500
+    color: var(--darkpink);
+    font-weight: 600
 }
 
 .breadcrumb-item a {
@@ -1786,6 +1786,10 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     justify-content: flex-end; 
 }
 
+.input-container {
+    position: relative;
+}
+
 i.icon-left{
     position: absolute;
     top: 50%;
@@ -1800,8 +1804,21 @@ i.icon-right {
     transform: translateY(-50%);
 }
 
-i.icon-search{
+input[type=search]{
+    padding-right: 2.5rem;
+}
+
+.dataTables_filter input[type=search]{
+    width: 150px;
+}
+
+i .icon-search{
     background: url("/vendors/images/icon-search.svg");
+    background-size: cover;
+    margin-right: 0.5rem;
+    width: 1rem; 
+    height: 1rem; 
+    display: inline-block;
 }
 
 .chat-area {
@@ -1859,8 +1876,13 @@ i.icon-search{
     justify-content: center;
 }
 
-.table-util button, .send-chat-area button, .btn-tooltip {
+.table-util button, .send-chat-area button, .btn-tooltip{
     padding: 0;
+    border: none;
+    background: none;
+}
+
+.nav-item button{
     border: none;
     background: none;
 }
@@ -1993,11 +2015,21 @@ i.icon-search{
     background: var(--green); 
 }
 
+.doc-status-verification {
+    background: var(--yellow); 
+}
+
 .card-box.timeline{
     width: 250px;
 }
 
-.card-box.timeline .active, .nav-link.active{
+.section-nav{
+    padding: 0.5rem 0.5rem;
+    font-weight: 500;
+}
+
+ .section-nav.active{
+    padding: 0.5rem 1.5rem;
     font-weight: 700 !important;
     border-width: 2px;
     border-style: solid;
@@ -2007,8 +2039,15 @@ i.icon-search{
     color: var(--darkpink);
 }
 
-.small-note{
-    font-size: 0.75rem;
+.accent-h-line{
+    min-height: 6px;
+    max-width: 100%;
+    height: 6px;
+}
+
+.secondary-nav .active{
+    border-bottom: 4px solid var(--darkpink);
+    font-weight: 500 !important;
 }
 
 .upload-file-border {
@@ -2017,12 +2056,12 @@ i.icon-search{
     border-width: 2px;
 }
 
-.breadcrumb-item.active {
-    border-bottom: 4px solid var(--darkpink);
-}
-
 a, a:-webkit-any-link {
     text-decoration: none;
+}
+
+.small.note{
+    color: rgb(0, 0, 0, .45);
 }
 
 .menu-icon,
@@ -2047,6 +2086,7 @@ a, a:-webkit-any-link {
 .search-toggle-icon {
     font-size: 20px
 }
+
 
 .brand-logo {
     width: 280px;
