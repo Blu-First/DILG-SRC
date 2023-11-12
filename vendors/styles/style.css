@@ -2045,6 +2045,24 @@ i .icon-search{
     height: 6px;
 }
 
+.d-board-sec-2{
+    height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+
+.d-board-sec-2 .doc-status{
+    align-self: flex-start;
+}
+
+.d-board-sec-2 .heading{
+    flex-grow: 1;
+
+    font-weight: 600;
+    text-align: center; 
+    height: 100%; 
+    display: flex; 
+    align-items: center;
+}
+
 .secondary-nav .active{
     border-bottom: 4px solid var(--darkpink);
     font-weight: 500 !important;
