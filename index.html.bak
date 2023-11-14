@@ -36,8 +36,7 @@
 				<a class="submission-btn" href="#" hreflang="en" type="text/html">Submissions</a>
 			</div>
 
-				<!-- Notifications Button -->
-
+			<!-- Notifications Button -->
 			<div class="user-notification">
 				<div class="dropdown">
 					<a class="nav-icon mx-3 d-none d-sm-inline dropdown-toggle no-arrow" href="#" role="button"
@@ -59,7 +58,7 @@
 							</div>
 
 							<div class="no-notifs-notice">
-								<img class="no-notifs-img" src="vendors/images/icon-no-notifs-lg.png" >
+								<img class="no-notifs-img" src="vendors/images/no-notifs.png" >
 								<p class="font-12 weight-100 color-blackfade">Notifications are currently empty.</p>
 							</div>
 						</div> -->
@@ -128,9 +127,7 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			
+
 			<!-- Inbox Button -->
 			<a class="nav-icon mx-3 d-none d-sm-inline" href="#">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-inbox"

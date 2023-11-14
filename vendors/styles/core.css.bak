@@ -465,6 +465,11 @@ h6 {
     font-size: 1rem
 }
 
+/* replaced by <small> tag */
+/* .subtitle-1{
+    font-size: 0.75rem
+} */
+
 .display-1,
 .lead {
     font-size: 1.25rem;
