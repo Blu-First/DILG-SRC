@@ -233,6 +233,26 @@ jQuery(document).ready(function () {
 		autostart: false,
 		autohide: true,
 	});
+
+	var currentPage = window.location.href;
+	var lastPartOfUrl = currentPage.substring(currentPage.lastIndexOf('/') + 1);
+
+	if (lastPartOfUrl === "submission.html" || lastPartOfUrl === "document-history.html") {
+		jQuery('#user-sub-btn').addClass('d-none');
+	}
+
+	$("#completed-tab").on("click", function() {
+		window.location.hash = "completed";
+	  });
+	  $("#submission-tab").on("click", function() {
+		window.location.hash = "submission";
+	  });
+		{
+			let submissionTabPanel = window.location.hash;
+			if (submissionTabPanel === "#completed") {
+				document.getElementById("completed-tab").click();
+			}
+		}
 });
 
 // sidebar menu accordion
@@ -334,6 +354,8 @@ function CopyToClipboard(value, showNotification, notificationText) {
 			}, 1000);
 		});
 	}
+
+
 }
 
 // detectIE Browser

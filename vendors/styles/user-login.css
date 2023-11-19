@@ -70,13 +70,12 @@
   }
   
   /* minimum size but retaining rem scaling reference https://stackoverflow.com/questions/23984629/how-to-set-min-font-size-in-css */
-  label, .forgot-password, .btn-primary{
+  label, .forgot-password, .btn-primary, .form-text{
     font-size: max(0.4em, 12px) !important;
     font-weight: 300 !important;
   }
   
   .form-group {
-    position: relative;
     text-align: left;
   }
   
@@ -92,13 +91,12 @@
     text-align: right;
   }
   
-  /* icon position inside input fiels reference https://mdbootstrap.com/docs/standard/extended/icon-inside-input/ */
-  .icon-user-id, .icon-pwd {
+i.icon-left {
     position: absolute;
     top: 50%;
     left: 4%;
     transform: translateY(-50%);
-  }
+}
   
   .icon-user {
     background: url('/vendors/images/icon-person.svg');

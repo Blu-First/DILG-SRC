@@ -25,15 +25,16 @@
 
 	<div class="dilg-header px-5">
 
-		<div class="dilg-header-left col-2 col-sm-3">
+		<div class="dilg-header-left col-2 col-sm-3" onclick="location.href='index.html';"" style="cursor:pointer">
 			<img class="logo" src="vendors/images/logo-dilg.png" alt="DILG Logo Small">
 			<span class="logo-title pl-1" class="">SGLGB <span class="title-portal"> Portal</span></span>
 		</div>
 
+
 		<div class="dilg-header-right">
 
 			<div class="sub-btn-container pr-30">
-				<a class="submission-btn" href="#" hreflang="en" type="text/html">Submissions</a>
+				<a id="user-sub-btn" class="submission-btn" href="submission.html" hreflang="en" type="text/html">Submissions</a>
 			</div>
 
 				<!-- Notifications Button -->
@@ -236,43 +237,51 @@
 			<div class="row pb-10 ">
 
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<div class="card-box d-board-sec-2 height-100-p p-3">
-						<div class="doc-status doc-status-pending small px-3">Pending</div>
-						<div class="heading">
-							<div class="h4">Financial Administration and Sustainability</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<div class="card-box d-board-sec-2 height-100-p p-3">
-						<div class="doc-status doc-status-success small px-3">Verified</div>
-						<div class="heading">
-							<div class="h4">Disaster Preparedness</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<div class="card-box d-board-sec-2 height-100-p p-3">
-						<div class="doc-status doc-status-success small px-3">Verified</div>
-						<div class="heading">
-							<div class="h4">Safety, Peace and Order</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<div class="card-box height-100-p p-3">
-						<div class="d-flex flex-wrap text-center py-3">
-							<div class="col-md-12">
-								<img src="vendors/images/icon-inbox-lg.svg" alt="" width="86px" height="74px">
-							</div>
-							<div class="col-md-12 py-2">
-								<div class="h5 weight-600">Go to Submissions</div>
+					<a href="#">
+						<div class="card-box d-board-sec-2 height-100-p p-3">
+							<div class="doc-status doc-status-pending small px-3">Pending</div>
+							<div class="heading">
+								<div class="h4">Financial Administration and Sustainability</div>
 							</div>
 						</div>
-					</div>
+					</a>
+				</div>
+
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<a href="submission.html#completed">
+						<div class="card-box d-board-sec-2 height-100-p p-3">
+							<div class="doc-status doc-status-success small px-3">Completed</div>
+							<div class="heading">
+								<div class="h4">Disaster Preparedness</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<a href="submission.html#completed">
+						<div class="card-box d-board-sec-2 height-100-p p-3">
+							<div class="doc-status doc-status-success small px-3">Completed</div>
+							<div class="heading">
+								<div class="h4">Safety, Peace and Order</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+					<a href="submission.html">
+						<div class="card-box height-100-p p-3">
+							<div class="d-flex flex-wrap text-center py-3">
+								<div class="col-md-12">
+									<img src="vendors/images/icon-inbox-lg.svg" alt="" width="86px" height="74px">
+								</div>
+								<div class="col-md-12 py-2">
+									<div class="h5 weight-600">Go to Submissions</div>
+								</div>
+							</div>
+						</div>
+					</a>
 				</div>
 			</div>
 
@@ -288,6 +297,9 @@
 
 	<!-- js -->
 	<script src="vendors/scripts/core.js"></script>
+	<script src="vendors/scripts/script.js"></script>
+	<script src="vendors/scripts/process.js"></script>
+	<script src="vendors/scripts/layout-settings.js"></script>
 
 </body>
 

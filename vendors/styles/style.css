@@ -61,7 +61,7 @@ a:hover {
 
 img {
     border: 0;
-    vertical-align: top;
+    vertical-align: middle;
     max-width: 100%;
     height: auto
 }
@@ -793,7 +793,7 @@ p {
 }
 
 .dropdown-toggle::after {
-    content: "\f107";
+    /* content: "\f107"; */
     font-family: "FontAwesome";
     vertical-align: unset;
     width: auto;
@@ -807,7 +807,7 @@ p {
 }
 
 .dropdown.show>.dropdown-toggle::after {
-    content: "\f106"
+    /* content: "\f106" */
 }
 
 .dropdown-toggle.no-arrow:after {
@@ -1537,7 +1537,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr[role=row]>th:first-child:before {
 
 table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
 table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
-    content: "\f106";
+    /* content: "\f106"; */
     background: 0 0
 }
 
@@ -1666,7 +1666,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 }
 
 .user-info-dropdown {
-    padding: 8px 25px 5px 0
+    /* padding: 8px 25px 5px 0 */
 }
 
 .user-info-dropdown .dropdown-toggle {
@@ -1871,6 +1871,15 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     justify-content: flex-end;
 }
 
+.icon-user {
+    background: url('/vendors/images/icon-person.svg');
+  }
+  
+  .icon-lock {
+    background: url('/vendors/images/icon-lock.svg');
+  }
+
+  
 .input-container {
     position: relative;
 }
