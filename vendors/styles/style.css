@@ -5135,7 +5135,7 @@ body.IE .register-page-wrap .container {
 }
 
 .dropzone {
-    border-color: #1b00ff
+    border-color: var(--darkpink)
 }
 
 .dropzone .dz-preview .dz-remove {
