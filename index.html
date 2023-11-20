@@ -25,19 +25,18 @@
 
 	<div class="dilg-header px-5">
 
-		<div class="dilg-header-left col-2 col-sm-3" onclick="location.href='index.html';"" style="cursor:pointer">
+		<div class="dilg-header-left col-2 col-sm-3" onclick="location.href='index.html';" style=" cursor:pointer">
 			<img class="logo" src="vendors/images/logo-dilg.png" alt="DILG Logo Small">
 			<span class="logo-title pl-1" class="">SGLGB <span class="title-portal"> Portal</span></span>
 		</div>
 
-
 		<div class="dilg-header-right">
 
 			<div class="sub-btn-container pr-30">
-				<a id="user-sub-btn" class="submission-btn" href="submission.html" hreflang="en" type="text/html">Submissions</a>
+				<a id="user-sub-btn" class=" submission-btn" href="submission.html" hreflang="en" type="text/html">Submissions</a>
 			</div>
 
-				<!-- Notifications Button -->
+			<!-- Notifications Button -->
 
 			<div class="user-notification">
 				<div class="dropdown">
@@ -129,9 +128,9 @@
 					</div>
 				</div>
 			</div>
-			
-			
-			
+
+
+
 			<!-- Inbox Button -->
 			<a class="nav-icon mx-3 d-none d-sm-inline" href="#">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-inbox"
@@ -142,14 +141,32 @@
 			</a>
 
 			<!-- User Icon -->
-			<a class="nav-icon mx-3 d-none d-sm-inline" href="#">
-				<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-person-circle"
-					viewBox="0 0 16 16">
-					<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-					<path fill-rule="evenodd"
-						d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-				</svg>
-			</a>
+			<div class="user-info-dropdown">
+				<div class="dropdown">
+					<a class="nav-icon dropdown-toggle mx-3 d-none d-sm-inline" href="#" role="button"
+					data-toggle="dropdown">
+						<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
+							class="bi bi-person-circle" viewBox="0 0 16 16">
+							<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+							<path fill-rule="evenodd"
+								d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+						</svg>
+					</a>
+					<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+						>
+							<a class="dropdown-item" href="#"
+								><i class="dw dw-user1"></i> Profile</a
+							>
+							<a class="dropdown-item" href="#"
+							><i class="dw dw-settings"></i> Setting</a>
+
+							<a class="dropdown-item" href="#"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+				</div>
+			</div>
 
 			<a id="nav-menu" class="mx-3 d-none" href="#">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-list"
@@ -237,7 +254,7 @@
 			<div class="row pb-10 ">
 
 				<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-					<a href="#">
+					<a href="submission.html">
 						<div class="card-box d-board-sec-2 height-100-p p-3">
 							<div class="doc-status doc-status-pending small px-3">Pending</div>
 							<div class="heading">

@@ -3128,8 +3128,8 @@ fieldset:disabled a.btn {
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #1502bd;
-    border-color: #0062cc
+    background-color: var(--palepink);
+    border-color: var(--darkpink);
 }
 
 .btn-primary.focus,
@@ -6230,10 +6230,10 @@ a.badge-dark:focus {
 }
 
 .progress {
-    height: 1rem;
+    height: 100%;
     font-size: .75rem;
     background-color: #e9ecef;
-    border-radius: .25rem
+    border-radius: 4px;
 }
 
 .progress-bar {
@@ -6247,7 +6247,6 @@ a.badge-dark:focus {
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    background-color: #1b00ff;
     -webkit-transition: width .6s ease;
     transition: width .6s ease
 }
