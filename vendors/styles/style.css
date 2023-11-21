@@ -1978,7 +1978,7 @@ i .icon-search {
     background: none;
 }
 
-.nav-item button {
+.nav-item button, button{
     border: none;
     background: none;
 }
@@ -2035,6 +2035,12 @@ i .icon-search {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+
+.collapsible-header{ 
+    background-color: var(--darkpink); 
+    border-radius: 5.73px 5.73px 0px 0px;
+    padding: 1.5rem 0rem;
 }
 
 .logo {
@@ -2177,7 +2183,7 @@ i .icon-search {
 
 .upload-file-border {
     border-color: var(--darkpink);
-    border-style: dotted;
+    border-style: dashed;
     border-width: 2px;
 }
 

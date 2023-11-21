@@ -241,18 +241,29 @@ jQuery(document).ready(function () {
 		jQuery('#user-sub-btn').addClass('d-none');
 	}
 
+	handleSubmissionTabs();
+		
+});
+
+function handleSubmissionTabs(){
 	$("#completed-tab").on("click", function() {
 		window.location.hash = "completed";
 	  });
 	  $("#submission-tab").on("click", function() {
 		window.location.hash = "submission";
 	  });
-		{
+		
 			let submissionTabPanel = window.location.hash;
 			if (submissionTabPanel === "#completed") {
 				document.getElementById("completed-tab").click();
 			}
-		}
+			if (submissionTabPanel === "#submission") {
+				document.getElementById("submission-tab").click();
+			}
+}
+
+$(window).on("popstate", function() {
+    handleSubmissionTabs();
 });
 
 // sidebar menu accordion
