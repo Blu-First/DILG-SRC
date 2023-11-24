@@ -243,7 +243,8 @@ jQuery(document).ready(function () {
 
 	handleSubmissionTabs();
 
-	const checkAllCheckbox = document.getElementById('unverifiedMOVS-checkAll');
+// Unverified MOVs
+const checkAllCheckbox = document.getElementById('unverifiedMOVS-checkAll');
 	const unverifiedMOVsCheckboxes = document.querySelectorAll('.unverifiedMOVsCheckbox');
 
 	// Add a click event listener to the "Check All" checkbox
@@ -253,6 +254,12 @@ jQuery(document).ready(function () {
 			checkbox.checked = checkAllCheckbox.checked;
 		});
 	});
+
+	function uncheckAllUnverified() {
+		unverifiedMOVsCheckboxes.forEach(checkbox => {
+			checkbox.checked = false;
+		});
+	}
 
 	function countChckedUnverifiedMOV() {
 		let checkedCount = 0;
@@ -288,6 +295,7 @@ jQuery(document).ready(function () {
 
 	// Add click event listener to the unverifiedMOVS-initDelete button
 	initDelUnverifiedMOVButton.addEventListener('click', function () {
+		uncheckAllUnverified();
 		const primaryUnvMOVOperBtn = document.querySelector('.primary-UnverifiedMOVOperation')
 
 		primaryUnvMOVOperBtn.classList.add('btn-danger');
@@ -297,18 +305,20 @@ jQuery(document).ready(function () {
 		}
 		// Add click event listener to the unverifiedMOVS-initDelete button
 		primaryUnvMOVOperBtn.addEventListener('click', function () {;
-			if(countChckedUnverifiedMOV()>0){
-				primaryUnvMOVOperBtn.setAttribute('data-toggle', 'modal');
-				primaryUnvMOVOperBtn.setAttribute('data-target', '#delUnverifiedMOVModal');
-			}else{
-				primaryUnvMOVOperBtn.removeAttribute('data-toggle');
-				primaryUnvMOVOperBtn.removeAttribute('data-target');
+			if (primaryUnvMOVOperBtn.classList.contains('btn-danger')) {
+				if(countChckedUnverifiedMOV()>0){
+					primaryUnvMOVOperBtn.setAttribute('data-toggle', 'modal');
+					primaryUnvMOVOperBtn.setAttribute('data-target', '#delUnverifiedMOVModal');
+				}else{
+					primaryUnvMOVOperBtn.removeAttribute('data-toggle');
+					primaryUnvMOVOperBtn.removeAttribute('data-target');
+				}
 			}
 		});
 	});
 
 	initViewUnverifiedMOVBtn.addEventListener('click', function () {
-
+		uncheckAllUnverified();
 		const primaryUnvMOVOperBtn = document.querySelector('.primary-UnverifiedMOVOperation');
 		primaryUnvMOVOperBtn.classList.add('btn-primary');
 		primaryUnvMOVOperBtn.textContent = 'View All Selected';
@@ -325,7 +335,7 @@ jQuery(document).ready(function () {
 	});
 
 	initDownloadUnverifiedMOVBtn.addEventListener('click', function () {
-
+		uncheckAllUnverified();
 		const primaryUnvMOVOperBtn = document.querySelector('.primary-UnverifiedMOVOperation');
 		primaryUnvMOVOperBtn.classList.add('btn-primary');
 		primaryUnvMOVOperBtn.textContent = 'Download All Selected';
@@ -359,7 +369,6 @@ jQuery(document).ready(function () {
 			primaryUnvMOVOperBtn.removeAttribute('data-target');
 		}
 
-
 		primaryUnvMOVOperBtn.textContent = '';
 
 		unverifiedMOVSChckElements.forEach(checkbox => {
@@ -368,13 +377,144 @@ jQuery(document).ready(function () {
 
 
 	});
+	
+    document.getElementById('cancelSel-unverifiedMOV').addEventListener('click', function () {
+        uncheckAllUnverified();
+        cancelUnverifiedMOVBtn.click();
+    });
 
 	// Delete Modal Submit
-	// const movOvwTableForm = document.getElementById('movOverviewTable');
-	// const movOvwDeleteButton = document.getElementById('delSel-movOverview');
-	// movOvwDeleteButton.addEventListener('click', function() {
-	// 	movOvwTableForm.submit();
+	// const unverifiedTableForm = document.getElementById('unverifiedMOVTable');
+	// const unverifiedDeleteButton = document.getElementById('delSel-unverifiedMOV');
+	// unverifiedDeleteButton.addEventListener('click', function() {
+	// 	unverifiedTableForm.submit();
 	// })
+
+// Unverified MOVs END
+
+
+// VERIFIED MOVS Table 
+	const checkAllVerifiedCheckbox = document.getElementById('verifiedMOVS-checkAll');
+	const verifiedMOVsCheckboxes = document.querySelectorAll('.verifiedMOVsCheckbox');
+	
+	checkAllVerifiedCheckbox.addEventListener('click', function () {
+		verifiedMOVsCheckboxes.forEach(checkbox => {
+			checkbox.checked = checkAllVerifiedCheckbox.checked;
+		});
+	});
+
+	function uncheckAllVerified() {
+		verifiedMOVsCheckboxes.forEach(checkbox => {
+			checkbox.checked = false;
+		});
+	}
+
+	function countChckedVerifiedMOV() {
+		let checkedCount = 0;
+		verifiedMOVsCheckboxes.forEach(checkbox => {
+			if (checkbox.checked) {
+				checkedCount++;
+			}
+		});
+		return checkedCount;
+	}
+
+	const initDelVerifiedMOVButton = document.getElementById('verifiedMOVS-initDelete');
+	const initViewVerifiedMOVBtn = document.getElementById('verifiedMOVS-initView');
+	const initDownloadVerifiedMOVBtn = document.getElementById('verifiedMOVS-initDownload');
+
+	const verifiedMOVSChckElements = document.querySelectorAll('.verifiedMOVS-operation');
+
+	const verifiedMOVSActElements = document.querySelectorAll('.verifiedMOVS-Actions');
+
+	verifiedMOVSActElements.forEach(element => {
+		element.addEventListener('click', function () {
+			verifiedMOVSChckElements.forEach(elements => {
+				elements.classList.remove('d-none');
+			});
+		});
+	});
+
+	const primaryVerifiedMOVOperBtn = document.querySelector('.primary-VerifiedMOVOperation');
+	initDelVerifiedMOVButton.addEventListener('click', function () {
+		uncheckAllVerified();
+		primaryVerifiedMOVOperBtn.classList.add('btn-danger');
+		primaryVerifiedMOVOperBtn.textContent = 'Delete All Selected';
+		if (primaryVerifiedMOVOperBtn.classList.contains('btn-primary')) {
+			primaryVerifiedMOVOperBtn.classList.remove('btn-primary');
+		}
+		primaryVerifiedMOVOperBtn.addEventListener('click', function () {;
+			if (primaryVerifiedMOVOperBtn.classList.contains('btn-danger')) {
+
+				if (countChckedVerifiedMOV() > 0) {
+					primaryVerifiedMOVOperBtn.setAttribute('data-toggle', 'modal');
+					primaryVerifiedMOVOperBtn.setAttribute('data-target', '#delVerifiedMOVModal');
+				} else {
+
+					primaryVerifiedMOVOperBtn.removeAttribute('data-toggle');
+					primaryVerifiedMOVOperBtn.removeAttribute('data-target');
+				}
+			}
+		});
+	});
+
+	initViewVerifiedMOVBtn.addEventListener('click', function () {
+		uncheckAllVerified()
+		primaryVerifiedMOVOperBtn.classList.add('btn-primary');
+		primaryVerifiedMOVOperBtn.textContent = 'View All Selected';
+		if (primaryVerifiedMOVOperBtn.hasAttribute('data-toggle')) {
+			primaryVerifiedMOVOperBtn.removeAttribute('data-toggle');
+		}
+		if (primaryVerifiedMOVOperBtn.hasAttribute('data-target')) {
+			primaryVerifiedMOVOperBtn.removeAttribute('data-target');
+		}
+		if (primaryVerifiedMOVOperBtn.classList.contains('btn-danger')) {
+			primaryVerifiedMOVOperBtn.classList.remove('btn-danger');
+		}
+	});
+
+	initDownloadVerifiedMOVBtn.addEventListener('click', function () {
+		uncheckAllVerified()
+		primaryVerifiedMOVOperBtn.classList.add('btn-primary');
+		primaryVerifiedMOVOperBtn.textContent = 'Download All Selected';
+		if (primaryVerifiedMOVOperBtn.hasAttribute('data-toggle')) {
+			primaryVerifiedMOVOperBtn.removeAttribute('data-toggle');
+		}
+		if (primaryVerifiedMOVOperBtn.hasAttribute('data-target')) {
+			primaryVerifiedMOVOperBtn.removeAttribute('data-target');
+		}
+		if (primaryVerifiedMOVOperBtn.classList.contains('btn-danger')) {
+			primaryVerifiedMOVOperBtn.classList.remove('btn-danger');
+		}
+	});
+
+	const cancelVerifiedMOVBtn = document.getElementById('cancelVerifiedMOVOperation');
+	cancelVerifiedMOVBtn.addEventListener('click', function () {
+		if (primaryVerifiedMOVOperBtn.classList.contains('btn-danger')) {
+			primaryVerifiedMOVOperBtn.classList.remove('btn-danger');
+		}
+		if (primaryVerifiedMOVOperBtn.classList.contains('btn-primary')) {
+			primaryVerifiedMOVOperBtn.classList.remove('btn-primary');
+		}
+		if (primaryVerifiedMOVOperBtn.hasAttribute('data-toggle')) {
+			primaryVerifiedMOVOperBtn.removeAttribute('data-toggle');
+		}
+		if (primaryVerifiedMOVOperBtn.hasAttribute('data-target')) {
+			primaryVerifiedMOVOperBtn.removeAttribute('data-target');
+		}
+		primaryVerifiedMOVOperBtn.textContent = '';
+
+		verifiedMOVSChckElements.forEach(checkbox => {
+			checkbox.classList.add('d-none');
+		});
+
+	});
+
+	document.getElementById('cancelSel-verifiedMOV').addEventListener('click', function () {
+        uncheckAllVerified();
+        cancelVerifiedMOVBtn.click();
+    });
+	// VERIFIED MOVS Table END
 
 });
 

@@ -1,0 +1,84 @@
+
+    /* line 837 */
+    .dropdown-item:focus,
+    .dropdown-item:hover {
+        background: #ecf0f4;
+        color: var(--darkpink)
+    }
+
+    /* line 1232 */
+    .bootstrap-select .dropdown-menu li .dropdown-item.active:hover,
+    .select2-container--default .select2-results__option[aria-selected=true] {
+        background-color: var(--palepink);
+        color: #fff
+    }
+
+    /* line 3338 */
+    .btn-danger {
+        color: #fff;
+        background-color: var(--red);
+        border-color: var(--red)
+    }
+
+
+
+    /* 3129 */
+    .btn-primary:hover {
+        color: #fff;
+        background-color: var(--palepink);
+        border-color: var(--darkpink);
+    }
+
+    /* 3467 */
+    .btn-outline-primary {
+        color: #212529;
+        border-color: #d4d4d4
+    }
+
+    .btn-outline-primary:hover {
+        color: gray;
+        background-color: var(--border);
+        border-color: gray
+    }
+
+    /* line 3866 */
+    .bootstrap-select .dropdown-toggle::after {
+        color: #4791de;
+        display: inline-block;
+        margin-left: .255em;
+        vertical-align: .255em;
+        content: "\f107";
+        border-top: .3em solid;
+        border-right: .3em solid transparent;
+        border-bottom: 0;
+        border-left: .3em solid transparent
+    }
+
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: .5rem;
+        /* removed pointer-events: none; line 6786 */
+    }
+
+
+    .modal-header {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-flex-align: start;
+        -webkit-box-align: start;
+        align-items: flex-start;
+        -ms-flex-pack: justify;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        padding: 1rem;
+        /* removed border-bottom: 1px solid #dee2e6; line 6919 */
+        border-top-left-radius: calc(.3rem - 1px);
+        border-top-right-radius: calc(.3rem - 1px)
+    }
+
+    /* line 15453 */
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 175px
+    }

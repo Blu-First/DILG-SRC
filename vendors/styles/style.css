@@ -1454,7 +1454,7 @@ table.dataTable>tbody>tr.child ul.dtr-details .dtr-title {
     padding: 1rem
 }
 
-.table td.truncate-txt {
+.table td.td-text-truncate {
     max-width: 50px;
     white-space: nowrap;
     overflow: hidden;
@@ -2220,6 +2220,17 @@ button {
 .doc-status-invalid {
     background: var(--red);
 }
+
+.mov-status-pending {
+    background: rgba(9, 81, 140, 0.25);
+    color: var(--blue);
+}
+
+.mov-status-submitted {
+    background: rgba(29, 184, 43, 0.40);
+    color: #017A0C;
+}
+
 
 .card-box.timeline {
     width: 250px;

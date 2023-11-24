@@ -5,7 +5,7 @@ const barangays = [
     "Market Area", "Pooc", "Pulong Santa Cruz", "Santo Domingo", "Sinalhan", "Tagapo"
 ];
 
-const brgySelect = document.getElementById('brgySelect');
+const brgySelect = document.querySelector('.brgySelect');
 
 barangays.forEach(barangay => {
     const option = document.createElement('option');
@@ -24,18 +24,8 @@ const criteria = [
     "Environmental Management"
 ];
 
-const coreGovernanceOptgroup = document.querySelector('#criteriaSelect optgroup[label="Core Governance Area"]');
-const essentialGovernanceOptgroup = document.querySelector('#criteriaSelect optgroup[label="Essential Governance Area"]');
-// $('#criteriaSelect').on('loaded.bs.select', function () {
-//     $(this).siblings('.btn').find('.filter-option-inner-inner').text('Select Area/s');
-// });
-
-
-// $('#criteriaSelect').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-//     const selectedText = $('#criteriaSelect').find(':selected').text();
-//     $('#criteriaSelect + .dropdown-toggle .filter-option-inner-inner').text('Selected Area/s: ' + selectedText);
-// });
-
+const coreGovernanceOptgroup = document.querySelector('.criteriaSelect optgroup[label="Core Governance Area"]');
+const essentialGovernanceOptgroup = document.querySelector('.criteriaSelect optgroup[label="Essential Governance Area"]');
 
 // Populate options for Core Governance Area
 criteria.slice(0, 3).forEach(criterion => {
@@ -56,7 +46,7 @@ criteria.slice(3).forEach(criterion => {
 // Submission State List
 const submissionStatusOptions = ["Pending", "Submitted"];
 
-const submStatusSelect = document.getElementById('submStatusSelect');
+const submStatusSelect = document.querySelector('.submStatusSelect');
 
 submissionStatusOptions.forEach(optionText => {
     const option = document.createElement('option');
