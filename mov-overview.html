@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGLGB Portal</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+
+    <link rel="icon" type="image/png" sizes="180x180" href="vendors/images/logo-dilg.png" />
+
+</head>
+
+<body>
+    <div class="dilg-header px-5">
+
+        <div class="dilg-header-left col-2 col-sm-3" onclick="location.href='admin-dashboard.html';"
+            style=" cursor:pointer">
+            <img class="logo" src="vendors/images/logo-dilg.png" alt="DILG Logo Small">
+            <span class="logo-title pl-1" class="">SGLGB <span class="title-portal"> Portal</span></span>
+        </div>
+
+        <div class="dilg-header-right">
+
+            <!-- Notifications Button -->
+
+            <div class="user-notification">
+                <div class="dropdown">
+                    <a class="nav-icon mx-3 d-none d-sm-inline dropdown-toggle no-arrow" href="#" role="button"
+                        data-toggle="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff"
+                            class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                        </svg>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <!-- WITH NO NOTIFICATIONS -->
+                        <!-- <div class="no-notifs-list mx-h-350">
+
+							<div class="notifs-title">
+								<h2> Notifications</h2>
+							</div>
+
+							<div class="no-notifs-notice">
+								<img class="no-notifs-img" src="vendors/images/icon-no-notifs-lg.png" >
+								<p class="font-12 weight-100 color-blackfade">Notifications are currently empty.</p>
+							</div>
+						</div> -->
+
+                        <!-- WITH NOTIFICATIONS -->
+                        <div class="notification-list mx-h-350 customscroll">
+
+                            <div class="notifs-title">
+                                <h2> Notifications</h2>
+                            </div>
+
+                            <div class="notifs">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Menu Button -->
+            <a class="nav-icon mx-3 d-none d-sm-inline" href="#">
+                <svg width="20" height="23.23" viewBox="0 0 31 36" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect y="0.777832" width="31" height="34.4444" fill="url(#pattern0)" />
+                    <defs>
+                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_162_1099"
+                                transform="matrix(0.0115741 0 0 0.0104167 -0.0555555 0)" />
+                        </pattern>
+                        <image id="image0_162_1099" width="96" height="96"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAABkUlEQVR4nO3c22rCQBQFUD+kfSz99yL9M6EttOig7BJ9ECxax0mTNK4FeRNOmDPHy2TjYgEAAAAAFyRfj9mVZbabj+xKLl6H17wm6+dbFzUzr1d/c9vN6tcb+3mjq+TzQb1G+51Ru/jH60W9RleN5fkpeFevUcPu31/qNdKA0usG04CRN1g1E1A0IDP6zKlmAooGxAT4GprR3oLafoi9qddof/B0+wQs1WvUnfrdfhi3flKvB92pZnew1p3tXHP+sz/Au2Hx76UeAAAAANxtVjOyofeTRa0mG1p6zb7WN0A2NJeeDfx9AxoeyHeXeo00oPS6wTRg5A1WzQQUDciMPnOqmYCiATEBvoZmtLcg2dD0mX2tb4BsaPrMvtY3QDY05w/jBoonzj2rGdlQAAAAAKZi7lnNyIYeyYaekA0tlyZQNjQnzwYWE8++VhNLKWIpEUsRS4lkXBFNHCI7mYGzmrKhJzTgzhYkA9erNvcFyeQbIBuasw2QDS3/7n9Kq8mGlnO7XzY0h4WQDQUAAABgMUXf4PSzRvbsb8QAAAAASUVORK5CYII=" />
+                    </defs>
+                </svg>
+            </a>
+
+            <!-- User Icon -->
+            <div class="user-info-dropdown">
+                <div class="dropdown">
+                    <a class="nav-icon dropdown-toggle mx-3 d-none d-sm-inline" href="#" role="button"
+                        data-toggle="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                        <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profile</a>
+                        <a class="dropdown-item" href="#"><i class="dw dw-settings"></i> Setting</a>
+
+                        <a class="dropdown-item" href="#"><i class="dw dw-logout"></i> Log Out</a>
+                    </div>
+                </div>
+            </div>
+
+            <a id="nav-menu" class="mx-3 d-none" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-list"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="xs-pd-20-10 pd-ltr-20">
+            <!-- Breadcrumb Navigation -->
+            <div class="row pb-10">
+                <div class="col-12 mb-20">
+                    <div class="card-box d-flex px-3 py-2 mx-3">
+                        <div class="align-items-center">
+                            <nav class="align-items-center" style="--bs-breadcrumb-divider: '';"
+                                aria-label="breadcrumb">
+                                <ol class="breadcrumb pl-4">
+                                    <li class="breadcrumb-item" aria-current="page"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active"><a href="#"></a>MOVs Overview</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Breadcrumb Navigation END-->
+
+            <!-- Page Title -->
+            <div class="row pb-10">
+                <div class="col-12 mb-20">
+                    <div class="card-box  py-4 px-3 mx-3">
+                        <div class="d-flex align-items-center px-4">
+                            <div class="flex-shrink-0 ">
+                                <h2 class="weight-600">MOVs Overview</h2>
+                            </div>
+                            <div class="accent-h-line ml-4"></div>
+                        </div>
+                        <!-- Table Heading + Filter -->
+                        <div class="pb-20">
+                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                <div class="d-flex align-items-center my-3 mx-4">
+                                    <div class="">
+                                        <div class="row">
+                                            <select name="brgySelect" id="brgySelect"
+                                                class="col-md-4 col-sm-8 my-2 selectpicker dropup"
+                                                data-dropup-auto="false" title="Select Barangay"
+                                                data-style="btn-outline-primary">
+                                                <option value="">Select Barangay</option>
+                                            </select>
+                                            <select id="criteriaSelect" name="criteriaSelect"
+                                                class="selectpicker dropup col-md-4 col-sm-8 my-2"
+                                                data-dropup-auto="false" data-style="btn-outline-primary" data-size="6"
+                                                data-width="175px" multiple data-actions-box="true"
+                                                data-selected-text-format="count" title="Select Area/s">
+                                                <optgroup label="Core Governance Area">
+                                                    <option value="" disabled>Criteria not on the Table</option>
+
+                                                </optgroup>
+                                                <optgroup label="Essential Governance Area">
+
+                                                </optgroup>
+                                            </select>
+
+                                            <select name="submStatusSelect" id="submStatusSelect"
+                                                class="selectpicker col-md-4 col-sm-8 my-2" title="Select Status"
+                                                data-style="btn-outline-primary">
+                                                <option value="">Select Status</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="table-util flex-shrink-0 ml-auto ">
+                                        <!-- <a id="edit-overview" tabindex="0" class="mx-2" role="button" data-toggle="popover" data-trigger="focus" data-content=""><img class="" src="vendors/images/icon-edit.svg"
+                                            alt=""></a> -->
+                                        <div class="btn-group  dropright align-items-center">
+                                            <button id="edit-overview" class="dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><img class="" src="vendors/images/icon-edit.svg"
+                                                    alt=""></button>
+                                            <div class="card-box p-4 dropdown-menu">
+                                                <button id="unverifiedMOVS-initView" class="unverifiedMOVS-Actions py-1 mb-1"><img
+                                                        class="mr-2" src="vendors/images/icon-view.svg" alt=""
+                                                        srcset="">View Files</button>
+                                                <button id="unverifiedMOVS-initDelete" class="unverifiedMOVS-Actions py-1 "
+                                                    style="color: var(--red);">
+                                                    <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="9"
+                                                        height="10" viewBox="0 0 9 10" fill="none">
+                                                        <path
+                                                            d="M1.69576 8.82628C1.69576 9.06843 1.79195 9.30067 1.96318 9.4719C2.13441 9.64313 2.36665 9.73932 2.6088 9.73932H7.17402C7.41617 9.73932 7.64841 9.64313 7.81964 9.4719C7.99087 9.30067 8.08706 9.06843 8.08706 8.82628V3.34802H9.00011V2.43497H7.17402V1.52193C7.17402 1.27978 7.07782 1.04754 6.90659 0.876311C6.73537 0.705082 6.50313 0.608887 6.26098 0.608887H3.52185C3.27969 0.608887 3.04745 0.705082 2.87623 0.876311C2.705 1.04754 2.6088 1.27978 2.6088 1.52193V2.43497H0.782715V3.34802H1.69576V8.82628ZM3.52185 1.52193H6.26098V2.43497H3.52185V1.52193ZM3.06532 3.34802H7.17402V8.82628H2.6088V3.34802H3.06532Z"
+                                                            fill="currentColor" />
+                                                        <path
+                                                            d="M3.52148 4.26074H4.43453V7.91292H3.52148V4.26074ZM5.34757 4.26074H6.26061V7.91292H5.34757V4.26074Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                    Delete Files
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <button id="unverifiedMOVS-initDownload" class="mx-2 unverifiedMOVS-Actions"><img class=""
+                                                src="vendors/images/icon-download.svg" alt=""></button>
+                                        <div id="DataTables_Table_0_filter"
+                                            class="dataTables_filter d-inline-block pr-0">
+                                            <label class="d-none">Search:</label>
+                                            <div class="input-container">
+                                                <input type="search" class="form-control form-control-sm"
+                                                    placeholder="Search" aria-controls="DataTables_Table_0">
+                                                <i class="icon-right"><span class='icon-search '></span></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Table Heading + Filter END-->
+                                <!-- Table -->
+                                <div class="row">
+                                    <div class="col-sm-12 px-4">
+                                        <table class="data-table table hover nowrap text-center mb-4">
+                                            <thead>
+                                                <tr>
+                                                    <th class="d-none unverifiedMOVS-operation  mx-5 px-4" title="Select All"><input
+                                                            class="" type="checkbox" id="unverifiedMOVS-checkAll" name="" />
+                                                    </th>
+                                                    <th><img class="pr-1" src="vendors/images/icon-letter-format.svg"
+                                                            alt="">Barangays</th>
+                                                    <th><img class=" pr-1" src="vendors/images/icon-link.svg"
+                                                            alt="">Attachment</th>
+                                                    <th><img class="mb-1 pr-1" src="vendors/images/icon-governance.svg"
+                                                            alt="">Governance Area</th>
+                                                    <th class="d-flex justify-content-center">
+
+                                                        <img class="pr-1" src="vendors/images/icon-status.svg"
+                                                            alt="">Status
+
+                                                    </th>
+                                                    <th class=""><img class="mb-1 pr-1"
+                                                            src="vendors/images/icon-date.svg" alt="">Date
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="border-bottom: 1px solid #e5e5e5">
+                                                <form action="/#" method="post" id="movOverviewTable">
+                                                    <tr>
+                                                        <td class="d-none unverifiedMOVS-operation"><input type="checkbox"
+                                                                class="unverifiedMOVsCheckbox" id="" name="" /></td>
+                                                        <td>
+                                                            Macabling
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Peace and Order
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-verification  small px-3 py-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                For Verification
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="d-none unverifiedMOVS-operation"><input type="checkbox"
+                                                                class="unverifiedMOVsCheckbox" id="" name="" /></td>
+                                                        <td>
+                                                            Market Area
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td class="truncate-txt">
+                                                            Fianancial Administration and Sustainability
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-success  small px-3 py-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                Verified
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="d-none unverifiedMOVS-operation"><input type="checkbox"
+                                                                class="unverifiedMOVsCheckbox" id="" name="" /></td>
+                                                        <td>
+                                                            Macabling
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Business Friendliness
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <button type="button"
+                                                                class="d-inline-block doc-status doc-status-invalid  small px-3 py-1"
+                                                                data-toggle="modal" data-target="#invalidModal">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                Invalid
+                                                            </button>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="d-none unverifiedMOVS-operation"><input type="checkbox"
+                                                                class="unverifiedMOVsCheckbox" id="" name="" /></td>
+                                                        <td>
+                                                            Sinalhan
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Environmental Management
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-success  small px-3 py-1">
+                                                                <svg class="d-inline-block"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                <span class="d-inline-block">Verified</span>
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="d-none unverifiedMOVS-operation"><input type="checkbox"
+                                                                class="unverifiedMOVsCheckbox" id="" name="" /></td>
+                                                        <td>
+                                                            Dita
+                                                        </td>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Financial Administration
+                                                        </td>
+
+                                                        <td class="d-flex flex-shrink-0 justify-content-center">
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-verification  small px-3 py-1">
+                                                                <svg class="d-inline-block"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                For Verification
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <!-- MODALs -->
+                                                    <div class="modal fade" id="delUnverifiedMOVModal" tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered d-flex align-items-center justify-content-center"
+                                                            role="document">
+                                                            <div
+                                                                class="card-box d-flex flex-column align-items-center px-4 py-5">
+                                                                <div class="d-flex justify-content-center align-items-center mb-4"
+                                                                    style="background-color:  rgba(255, 0, 51, 0.10); width: 80px; height: 80px; border-radius: 80px;">
+                                                                    <img src="vendors/images/icon-danger.svg" alt=""
+                                                                        srcset="">
+                                                                </div>
+                                                                <h1 class="mb-3">Delete Files</h1>
+                                                                <p class="m-0">This action will delete all of the
+                                                                    selected files.</p>
+                                                                <p class="mb-3">Are you sure?</p>
+                                                                <div>
+                                                                    <button class="btn-sm px-4 btn-secondary"
+                                                                        data-dismiss="modal"
+                                                                        aria-label="Close">Cancel</button>
+                                                                    <button type="submit" id="delSel-movOverview"
+                                                                        class="btn-sm px-4 btn-danger weight-500"
+                                                                        data-dismiss="modal">Delete</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Table END -->
+
+                            <!-- Table Footer -->
+                            <div class="d-flex justify-content-end mx-4">
+                                <!-- Row number selector -->
+                                <div class="mr-auto">
+                                    <button class="d-none unverifiedMOVS-operation primary-UnverifiedMOVOperation btn btn-sm mr-3 "></button>
+                                    <button class="d-none unverifiedMOVS-operation btn btn-sm btn-secondary weight-500"
+                                        id="cancelUnverifiedMOVOperation">Cancel</button>
+                                </div>
+                                <div class="">
+                                    <div class="dataTables_length" id="DataTables_Table_0_length">
+                                        <label class="d-inline-block">Rows per page</label>
+                                        <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                            class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="-1">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled"
+                                            id="DataTables_Table_0_previous"><a href="#"
+                                                aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0"
+                                                class="page-link"><i class="ion-chevron-left"></i></a></li>
+                                        <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a
+                                                href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                                                class="page-link"><i class="ion-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Table Footer END -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Page Title END -->
+
+
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer-wrap pd-10 px-5">
+        © Copyright <span class="font-weight-bold">Department of Interior and Local Government Santa Rosa City.</span>
+        All Rights Reserved.
+    </div>
+
+    <!-- js -->
+    <script src="vendors/scripts/core.js"></script>
+    <script src="vendors/scripts/script.js"></script>
+    <!-- <script src="vendors/scripts/process.js"></script> -->
+    <!-- <script src="vendors/scripts/layout-settings.js"></script> -->
+    <!-- <script src="vendors\scripts\script.js"></script>
+	<script src="src\plugins\bootstrap\bootstrap.js"></script> -->
+    <script src="vendors/scripts/options-select.js"></script>
+
+
+
+</body>
+
+</html>

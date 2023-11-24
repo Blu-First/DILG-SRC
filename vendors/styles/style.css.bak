@@ -2071,7 +2071,7 @@ i .icon-search{
     font-weight: 500 !important;
 }
 
-.upload-file-border {
+.upload-filezone {
     border-color: var(--darkpink);
     border-style: dotted;
     border-width: 2px;

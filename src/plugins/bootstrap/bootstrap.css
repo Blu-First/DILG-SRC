@@ -2595,8 +2595,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #F1EEEE;
+  border-color: #F1EEEE;
 }
 
 .btn-secondary:hover {
@@ -5925,7 +5925,6 @@ a.close.disabled {
   position: relative;
   width: auto;
   margin: 0.5rem;
-  pointer-events: none;
 }
 
 .modal.fade .modal-dialog {
