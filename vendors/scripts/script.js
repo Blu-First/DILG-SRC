@@ -368,7 +368,7 @@ const checkAllCheckbox = document.getElementById('unverifiedMOVS-checkAll');
 		if (primaryUnvMOVOperBtn.hasAttribute('data-target')) {
 			primaryUnvMOVOperBtn.removeAttribute('data-target');
 		}
-
+		uncheckAllUnverified();	
 		primaryUnvMOVOperBtn.textContent = '';
 
 		unverifiedMOVSChckElements.forEach(checkbox => {
@@ -379,8 +379,8 @@ const checkAllCheckbox = document.getElementById('unverifiedMOVS-checkAll');
 	});
 	
     document.getElementById('cancelSel-unverifiedMOV').addEventListener('click', function () {
-        uncheckAllUnverified();
         cancelUnverifiedMOVBtn.click();
+        
     });
 
 	// Delete Modal Submit
@@ -502,6 +502,7 @@ const checkAllCheckbox = document.getElementById('unverifiedMOVS-checkAll');
 		if (primaryVerifiedMOVOperBtn.hasAttribute('data-target')) {
 			primaryVerifiedMOVOperBtn.removeAttribute('data-target');
 		}
+		uncheckAllVerified();
 		primaryVerifiedMOVOperBtn.textContent = '';
 
 		verifiedMOVSChckElements.forEach(checkbox => {
@@ -511,7 +512,6 @@ const checkAllCheckbox = document.getElementById('unverifiedMOVS-checkAll');
 	});
 
 	document.getElementById('cancelSel-verifiedMOV').addEventListener('click', function () {
-        uncheckAllVerified();
         cancelVerifiedMOVBtn.click();
     });
 	// VERIFIED MOVS Table END
@@ -537,6 +537,8 @@ function handleSubmissionTabs() {
 
 $(window).on("popstate", function () {
 	handleSubmissionTabs();
+	cancelUnverifiedMOVBtn.click();
+	cancelVerifiedMOVBtn.click();
 });
 
 // sidebar menu accordion
