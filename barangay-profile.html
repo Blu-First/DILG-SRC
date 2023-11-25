@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8" />
+    <title>SGLGB Portal</title>
+
+
+    <!-- Site favicon -->
+    <link rel="icon" type="image/png" sizes="180x180" href="vendors/images/logo-dilg.png" />
+
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+
+</head>
+
+<body>
+
+    <div class="dilg-header px-5">
+
+        <div class="dilg-header-left col-2 col-sm-3" onclick="location.href='index.html';"" style=" cursor:pointer">
+            <img class="logo" src="vendors/images/logo-dilg.png" alt="DILG Logo Small">
+            <span class="logo-title pl-1" class="">SGLGB <span class="title-portal"> Portal</span></span>
+        </div>
+
+
+        <div class="dilg-header-right">
+
+            <div class="sub-btn-container pr-30">
+                <a id="user-sub-btn" class="submission-btn" href="submission.html" hreflang="en"
+                    type="text/html">Submissions</a>
+            </div>
+
+            <!-- Notifications Button -->
+
+            <div class="user-notification">
+                <div class="dropdown">
+                    <a class="nav-icon mx-3 d-none d-sm-inline dropdown-toggle no-arrow" href="#" role="button"
+                        data-toggle="dropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff"
+                            class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                        </svg>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <!-- WITH NO NOTIFICATIONS -->
+                        <!-- <div class="no-notifs-list mx-h-350">
+
+							<div class="notifs-title">
+								<h2> Notifications</h2>
+							</div>
+
+							<div class="no-notifs-notice">
+								<img class="no-notifs-img" src="vendors/images/icon-no-notifs-lg.png" >
+								<p class="font-12 weight-100 color-blackfade">Notifications are currently empty.</p>
+							</div>
+						</div> -->
+
+                        <!-- WITH NOTIFICATIONS -->
+                        <div class="notification-list mx-h-350 customscroll">
+
+                            <div class="notifs-title">
+                                <h2> Notifications</h2>
+                            </div>
+
+                            <div class="notifs">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <p>
+                                                • Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Inbox Button -->
+            <a class="nav-icon mx-3 d-none d-sm-inline" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-inbox"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4H4.98zm9.954 5H10.45a2.5 2.5 0 0 1-4.9 0H1.066l.32 2.562a.5.5 0 0 0 .497.438h12.234a.5.5 0 0 0 .496-.438L14.933 9zM3.809 3.563A1.5 1.5 0 0 1 4.981 3h6.038a1.5 1.5 0 0 1 1.172.563l3.7 4.625a.5.5 0 0 1 .105.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374l3.7-4.625z" />
+                </svg>
+            </a>
+
+            <!-- User Icon -->
+            <a class="nav-icon mx-3 d-none d-sm-inline" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#fff" class="bi bi-person-circle"
+                    viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+            </a>
+
+            <a id="nav-menu" class="mx-3 d-none" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff" class="bi bi-list"
+                    viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        <div class="xs-pd-20-10 pd-ltr-20">
+            <div class="pl-3">
+                <div class="card-box pd-30 height-100-p mb-30">
+                    <div class="row align-items-center custom-row mr-5 ml-5">
+
+                        <!-- Barangay Picture -->
+                        <div class="col-md-2">
+                            <img src="vendors/images/logo-caingin.jpg" alt="" />
+                        </div>
+
+                        <!-- Name & Message -->
+                        <div class="col-md-6 pl-20">
+                            <h4 class="weight-600 font-30 text-capitalize">
+                                Barangay <span class="color-darkpink">Caingin</span>
+                            </h4>
+
+                            <div class="mt-2">
+                                <a class="dilg-button" href="inbox.html" hreflang="en" type="text/html">Message</a>
+                            </div>
+                            </p>
+                        </div>
+
+
+                        <!-- Information -->
+                        <div class="col-md-4">
+                            <div class="brgy-info-container">
+                                <ul>
+                                    <li>
+                                        <i class="bx bx-phone pr-1"></i>
+                                        000-000
+                                    </li>
+                                    <li>
+                                        <i class="bx bx-envelope pr-1"></i>
+                                        barangay@email.com
+                                    </li>
+                                    <li>
+                                        <i class="bx bx-map-pin pr-1"></i>
+                                        Location
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Second Section -->
+
+
+            <!--Submissions Completed breadcrumb-->
+
+            <div class="pl-3">
+                <ul class="nav ml-2" id="doc-tab-list" role="tablist">
+                    <li class="nav-item secondary-nav" role="navigation">
+                        <button class="nav-link  active px-0 pb-0 ml-4 mb-10" id="submission-tab" data-toggle="tab"
+                            href="#submission" role="tab" aria-controls="Submission"
+                            aria-selected="true">Submission</button>
+                    </li>
+                    <li class="nav-item secondary-nav" role="navigation">
+                        <button class="nav-link secondary-nav px-0 pb-0 ml-4 mb-10" id="completed-tab" data-toggle="tab"
+                            href="#completed" role="tab" aria-controls="Completed" aria-selected="false">All
+                            Files</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="doc-tab-content">
+                <!-- Submissions Tab -->
+                <div class="tab-pane fade show active" id="submission" role="tabpanel" aria-labelledby="submission-tab">
+
+                    <!---Documents Submissions-->
+                    <div class="container-fluid my-3">
+                        <div class="card-box">
+                            <div class="mx-3 py-4 px-2">
+
+                                <!-- Filters -->
+                                <div class="row align-items-center mx-3 px-4">
+                                    <div class="mb-4">
+                                        <select class="selectpicker dropdown-toggle input-center ml-2" data-size="4"
+                                            size="1" title="Select Governance Area" onchange="this.form.submit()"
+                                            required>
+                                            <option value="all">All</option>
+                                            <option value="all">Governance Area 1</option>
+                                            <option value="all">Governance Area 2</option>
+                                            <option value="all">Governance Area 3</option>
+                                            <option value="all">Governance Area 4</option>
+                                            <option value="all">Governance Area 5</option>
+                                            <option value="all">Governance Area 6</option>
+                                        </select>
+
+                                        <select class="bootstrap-select selectpicker input-center ml-2" data-size="4"
+                                            size="1" title="Select Status" onchange="this.form.submit()" required>
+                                            <option value="all">All</option>
+                                            <option value="all">For Verification</option>
+                                            <option value="all">Verified</option>
+                                            <option value="all">Invalid</option>
+                                            <option value="all">To Resubmit</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="table-util ml-auto mb-4">
+                                        <button class="px-2"><img class="" src="vendors/images/icon-timeline.svg"
+                                                alt=""></button>
+                                        <button class="px-2"><img class="" src="vendors/images/icon-filter.svg"
+                                                alt=""></button>
+                                        <div id="DataTables_Table_0_filter"
+                                            class="dataTables_filter d-inline-block pr-0">
+                                            <div class="d-inline-block">
+                                                <label class="d-none">Search:</label>
+                                                <div class="input-container">
+                                                    <input type="search" class="form-control form-control-sm"
+                                                        placeholder="Search" aria-controls="DataTables_Table_0">
+                                                    <i class="icon-right"><span class='icon-search '></span></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Table Content -->
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                                    <div class="row pb-4">
+                                        <div class="col-sm-12">
+                                            <table class="data-table table hover nowrap mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th><img class="pr-1"
+                                                                src="vendors/images/icon-letter-format.svg"
+                                                                alt="">Document</th>
+                                                        <th><img class="mb-1 pr-1"
+                                                                src="vendors/images/icon-governance.svg"
+                                                                alt="">Governance Area</th>
+                                                        <th class="d-flex justify-content-center">
+
+                                                            <img class="pr-1" src="vendors/images/icon-status.svg"
+                                                                alt="">Status
+
+                                                        </th>
+                                                        <th class=""><img class="mb-1 pr-1"
+                                                                src="vendors/images/icon-date.svg" alt="">Date
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Peace and Order
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-verification  small px-3 py-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                For Verification
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td class="truncate-txt">
+                                                            Fianancial Administration and Sustainability
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-success  small px-3 py-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                Verified
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Business Friendliness
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-invalid  small px-3 py-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                Invalid
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Environmental Management
+                                                        </td>
+
+                                                        <td class="d-flex justify-content-center">
+
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-success  small px-3 py-1">
+                                                                <svg class="d-inline-block"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                <span class="d-inline-block">Verified</span>
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#"><u>AttachmentForm.pdf</u></a>
+                                                        </td>
+
+                                                        <td>
+                                                            Financial Administration
+                                                        </td>
+
+                                                        <td class="d-flex flex-shrink-0 justify-content-center">
+                                                            <div
+                                                                class="d-inline-block doc-status doc-status-verification  small px-3 py-1">
+                                                                <svg class="d-inline-block"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="1rem"
+                                                                    height="1rem" viewBox="0 0 19 19" fill="none">
+                                                                    <path
+                                                                        d="M9.49999 1.58337C5.13474 1.58337 1.58333 5.13479 1.58333 9.50004C1.58333 13.8653 5.13474 17.4167 9.49999 17.4167C13.8652 17.4167 17.4167 13.8653 17.4167 9.50004C17.4167 5.13479 13.8652 1.58337 9.49999 1.58337ZM7.91745 12.9937L4.97799 10.0605L6.09583 8.93954L7.91587 10.7564L12.107 6.56533L13.2264 7.68475L7.91745 12.9937Z"
+                                                                        fill="white" />
+                                                                </svg>
+                                                                For Verification
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            06/12/2023
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Table End -->
+                                <!-- Table Footer -->
+                                <div class="d-flex justify-content-end align-items-center">
+                                    <!-- Row number selector -->
+                                    <div class="small note mr-auto">
+                                        <i class="small">Note: If marked as invalid, click on the 'Invalid' to see
+                                            the
+                                            remarks.</i>
+                                    </div>
+                                    <div>
+                                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                                            <label class="d-inline-block">Rows per page</label>
+                                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                                class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="-1">All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="dataTables_paginate paging_simple_numbers"
+                                        id="DataTables_Table_0_paginate">
+                                        <ul class="pagination">
+                                            <li class="paginate_button page-item previous disabled"
+                                                id="DataTables_Table_0_previous"><a href="#"
+                                                    aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0"
+                                                    class="page-link"><i class="ion-chevron-left"></i></a></li>
+                                            <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a
+                                                    href="#" aria-controls="DataTables_Table_0" data-dt-idx="3"
+                                                    tabindex="0" class="page-link"><i class="ion-chevron-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Table Footer END -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Files Tab -->
+                <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">
+                    <!-- Page Title -->
+                    <div class="container-fluid my-3">
+                        <div class="card-box">
+                            <div class="mx-3 py-4 px-2">
+
+                                <!-- Filters -->
+                                <div class="row align-items-center mx-3 px-4">
+                                    <div class="mb-4">
+                                        <h4>Folders & Files</h2>
+                                    </div>
+
+                                    <div class="table-util ml-auto mb-4">
+                                        <button class="px-2"><img class="" src="vendors/images/icon-timeline.svg"
+                                                alt=""></button>
+                                        <button class="px-2"><img class="" src="vendors/images/icon-filter.svg"
+                                                alt=""></button>
+                                        <div id="DataTables_Table_0_filter"
+                                            class="dataTables_filter d-inline-block pr-0">
+                                            <div class="d-inline-block">
+                                                <label class="d-none">Search:</label>
+                                                <div class="input-container">
+                                                    <input type="search" class="form-control form-control-sm"
+                                                        placeholder="Search" aria-controls="DataTables_Table_0">
+                                                    <i class="icon-right"><span class='icon-search '></span></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Table Content -->
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+
+                                    <div class="row pb-4">
+                                        <div class="col-sm-12">
+                                            <table class="table hover nowrap mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Governance Area 1</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Governance Area 2</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Governance Area 3</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Governance Area 4</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Governance Area 5</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Governance Area 6</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="pl-30">
+                                                                <img src="vendors/images/icon-folder.png">
+                                                                <a href="#" class="pl-10">Others & Miscs</a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Table End -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-wrap pd-10 px-5">
+        © Copyright <span class="font-weight-bold">Department of Interior and Local Government Santa Rosa City.</span>
+        All Rights Reserved.
+    </div>
+
+    <!-- js -->
+    <script src="vendors/scripts/core.js"></script>
+    <script src="vendors/scripts/script.js"></script>
+    <script src="vendors/scripts/process.js"></script>
+    <script src="vendors/scripts/layout-settings.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+    <script>
+        $('.selectpicker').selectpicker({
+            dropupAuto: false
+        });
+    </script>
+</body>
+
+</html>
