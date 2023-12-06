@@ -1,0 +1,568 @@
+<?php
+require_once('connector.php');
+
+if (!$db) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+
+if (isset($_SESSION["emp_id"])) {
+
+    ?>
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SGLGB Portal</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+        <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css" />
+        <link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+
+        <link rel="icon" type="image/png" sizes="180x180" href="vendors/images/logo-dilg.png" />
+
+    </head>
+
+    <body>
+
+        <?php include('admin-header.php'); ?>
+
+        <div class="main-container">
+            <div class="xs-pd-20-10 pd-ltr-20">
+                <!-- Breadcrumb Navigation -->
+                <div class="row pb-10">
+                    <div class="col-12 mb-20">
+                        <div class="card-box d-flex px-3 py-2 mx-3">
+                            <div class="align-items-center">
+                                <nav class="align-items-center" style="--bs-breadcrumb-divider: '';"
+                                    aria-label="breadcrumb">
+                                    <ol class="breadcrumb pl-4">
+                                        <li class="breadcrumb-item" aria-current="page"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active"><a href="#"></a>Deadline Requests</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breadcrumb Navigation END-->
+
+                <!-- MOVs Overview -->
+                <div class="row pb-10 mb-20">
+                    <div class="col-12 mb-20">
+                        <div class="card-box  py-4 px-3 mx-3">
+                            <div class="d-flex align-items-center px-4 my-5">
+                                <div class="flex-shrink-0 ">
+                                    <h2 class="weight-600">Pending Requests</h2>
+                                </div>
+                                <div class="accent-h-line ml-4"></div>
+                            </div>
+
+                            <!-- Table Heading + Filter -->
+                            <div class="pb-20">
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="d-flex align-items-center my-3 mx-4">
+                                        <div class="">
+                                            <div class="row">
+                                                <select name="" id=""
+                                                    class="brgySelect col-md-4 col-sm-8 my-2 selectpicker dropup"
+                                                    data-dropup-auto="false" title="Select Barangay"
+                                                    data-style="btn-outline-primary">
+                                                    <option value="">Select Barangay</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-util flex-shrink-0 ml-auto ">
+                                            <div class="btn-group  dropright">
+                                                <button id="edit-MOV" class="dropdown-toggle mb-2" data-toggle="dropdown"
+                                                    aria-expanded="false"><img class="" src="vendors/images/icon-edit.svg"
+                                                        alt=""></button>
+                                                <div class="card-box p-4 dropdown-menu">
+
+                                                    <button id="unverifiedMOVS-initView"
+                                                        class="unverifiedMOVS-Actions py-1 mb-1"><img class="mr-2"
+                                                            src="vendors/images/icon-view.svg" alt="" srcset="">View
+                                                        Files</button>
+
+                                                    <button id="unverifiedMOVS-initDelete"
+                                                        class="unverifiedMOVS-Actions py-1 " style="color: var(--red);"
+                                                        onclick="toggleDeleteSection()">
+                                                        <li class="bx bx-trash"></li>
+                                                        Delete Files
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                            <button id="unverifiedMOVS-initDownload"
+                                                class="mx-2 unverifiedMOVS-Actions"><img class=""
+                                                    src="vendors/images/icon-download.svg" alt=""></button>
+                                            <div id="DataTables_Table_0_filter"
+                                                class="dataTables_filter d-inline-block pr-0">
+                                                <label class="d-none">Search:</label>
+                                                <div class="input-container">
+                                                    <input type="search" class="form-control form-control-sm"
+                                                        placeholder="Search" aria-controls="DataTables_Table_0">
+                                                    <i class="icon-right"><span class='icon-search '></span></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Table Heading + Filter END-->
+                                    <!-- Table -->
+                                    <div class="row">
+                                        <div class="col-sm-12 px-4">
+                                            <table class="data-table table hover nowrap text-center mb-4">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="unverifiedMOVS-operation mx-5 px-4" id="selectAllHeader"
+                                                            title="Select All" style="display:none">
+                                                        </th>
+
+                                                        <th><img class="pr-1" src="vendors/images/icon-letter-format.svg"
+                                                                alt="">Barangays</th>
+
+                                                        <th><img class=" pr-1" src="vendors/images/icon-link.svg"
+                                                                alt="">Request</th>
+
+                                                        <th class="justify-content-center">
+                                                            <img class="pr-1 pb-1" src="vendors/images/icon-status.svg"
+                                                                alt="">Status
+                                                        </th>
+
+                                                        <th class=""><img class="mb-1 pr-1"
+                                                                src="vendors/images/icon-date.svg" alt="">Date Requested
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    if (isset($_POST['search-submittedTbl']) && !empty(trim($_POST['search-submittedTbl']))) {
+                                                        $search = mysqli_real_escape_string($db, $_POST['search-submittedTbl']);
+                                                        $sql = "SELECT doc_name, govarea, status, DATE_FORMAT(time_submitted, '%m/%d/%Y') AS f_date FROM mov WHERE doc_name LIKE '%$search%' OR govarea LIKE '%$search%' OR status LIKE '%$search%' ";
+                                                        $_POST['search-submittedTbl'] = '';
+                                                    } else {
+                                                        $sql = "SELECT * FROM dl_request WHERE status = 'Pending'";
+                                                    }
+
+                                                    $result_submittedTbl = mysqli_query($db, $sql);
+                                                    while ($row = mysqli_fetch_assoc($result_submittedTbl)):
+                                                        ?>
+                                                        <tr>
+                                                            <td class="" style="display:none" id="checkboxestable">
+                                                                <input class="unverifiedMOVsCheckbox" type="checkbox"
+                                                                    name="selectedRows[]"
+                                                                    value="<?php echo $row['req_code']; ?>" />
+                                                            </td>
+
+
+                                                            <td class="td-text-truncate-250">
+                                                                <?php
+                                                                $namebarangay = $row['barangay'];
+                                                                $name = mysqli_query($db, "SELECT * FROM users WHERE username = '$namebarangay'");
+                                                                $fetchname = mysqli_fetch_assoc($name);
+                                                                echo $fetchname['name']; ?>
+                                                            </td>
+
+                                                            <td>
+                                                                <a
+                                                                    href="admin-view-request.php?req_code=<?php echo $row['req_code']; ?>">
+                                                                    <?php echo $row['govareas']; ?>
+                                                            </td>
+
+                                                            <td class="d-flex justify-content-center">
+                                                                <?php
+                                                                $status = $row['status'];
+                                                                $badgeColor = ($status == 'Pending') ? '#BFD1E0' : (($status == 'Approved') ? '#34C041' : (($status == 'Rejected') ? '#FF0335' : 'default_color'));
+                                                                ?>
+                                                                <span class="badge badge-pill"
+                                                                    style="background-color: <?php echo $badgeColor; ?>"
+                                                                    data-color="#000">
+                                                                    <?php echo $status; ?>
+                                                                </span>
+                                                            </td>
+
+                                                            <td>
+                                                                <?php
+                                                                $dateRequested = date_create($row['date_requested']);
+                                                                echo date_format($dateRequested, 'm/d/Y');
+                                                                ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endwhile; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Table END -->
+
+                                <!-- Table Footer -->
+                                <div class="d-flex justify-content-end mx-4">
+                                    <!-- Row number selector -->
+                                    <div class="mr-auto">
+
+                                        <div id="deleteSection" style="display: none;">
+                                            <button id="deleteSelectedRows" class="btn btn-danger"
+                                                onclick="deleteSelectedRows()">Delete Selected</button>
+                                            <button id="cancelDelete" class="btn btn-secondary"
+                                                onclick="cancelDelete()">Cancel</button>
+                                        </div>
+
+                                        <button
+                                            class="d-none unverifiedMOVS-operation primary-UnverifiedMOVOperation btn btn-sm mr-3 "></button>
+                                        <button class="d-none unverifiedMOVS-operation btn btn-sm btn-secondary weight-500"
+                                            id="cancelUnverifiedMOVOperation">Cancel</button>
+                                    </div>
+                                    <div class="">
+                                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                                            <label class="d-inline-block">Rows per page</label>
+                                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                                class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="-1">All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                        <ul class="pagination">
+                                            <li class="paginate_button page-item previous disabled"
+                                                id="DataTables_Table_0_previous"><a href="#"
+                                                    aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0"
+                                                    class="page-link"><i class="ion-chevron-left"></i></a></li>
+                                            <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a
+                                                    href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                                                    class="page-link"><i class="ion-chevron-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Table Footer END -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- MOVs END -->
+
+                <!-- TABLE 2 -->
+
+                <div class="row pb-10 mb-20">
+                    <div class="col-12 mb-20">
+                        <div class="card-box  py-4 px-3 mx-3">
+                            <div class="d-flex align-items-center px-4 my-5">
+                                <div class="flex-shrink-0 ">
+                                    <h2 class="weight-600">Verified Requests</h2>
+                                </div>
+                                <div class="accent-h-line ml-4"></div>
+                            </div>
+
+                            <!-- Table Heading + Filter -->
+                            <div class="pb-20">
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <div class="d-flex align-items-center my-3 mx-4">
+                                        <div class="">
+                                            <div class="row">
+                                                <select name="" id=""
+                                                    class="brgySelect col-md-4 col-sm-8 my-2 selectpicker dropup"
+                                                    data-dropup-auto="false" title="Select Barangay"
+                                                    data-style="btn-outline-primary">
+                                                    <option value="">Select Barangay</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-util flex-shrink-0 ml-auto ">
+                                            <div class="btn-group  dropright">
+                                                <button id="edit-MOV" class="dropdown-toggle mb-2" data-toggle="dropdown"
+                                                    aria-expanded="false"><img class="" src="vendors/images/icon-edit.svg"
+                                                        alt=""></button>
+                                                <div class="card-box p-4 dropdown-menu">
+
+                                                    <button id="unverifiedMOVS-initViewVerified"
+                                                        class="unverifiedMOVS-Actions py-1 mb-1"><img class="mr-2"
+                                                            src="vendors/images/icon-view.svg" alt="" srcset="">View
+                                                        Files</button>
+
+                                                    <button id="unverifiedMOVS-initDeleteVerified"
+                                                        class="unverifiedMOVS-Actions py-1 " style="color: var(--red);"
+                                                        onclick="toggleDeleteSectionVerified()">
+                                                        <li class="bx bx-trash"></li>
+                                                        Delete Files
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                            <button id="unverifiedMOVS-initDownload"
+                                                class="mx-2 unverifiedMOVS-Actions"><img class=""
+                                                    src="vendors/images/icon-download.svg" alt=""></button>
+                                            <div id="DataTables_Table_0_filter"
+                                                class="dataTables_filter d-inline-block pr-0">
+                                                <label class="d-none">Search:</label>
+                                                <div class="input-container">
+                                                    <input type="search" class="form-control form-control-sm"
+                                                        placeholder="Search" aria-controls="DataTables_Table_0">
+                                                    <i class="icon-right"><span class='icon-search '></span></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Table Heading + Filter END-->
+                                    <!-- Table -->
+                                    <div class="row">
+                                        <div class="col-sm-12 px-4">
+                                            <table class="data-table table hover nowrap text-center mb-4">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="unverifiedMOVS-operation mx-5 px-4"
+                                                            id="selectAllHeaderVerified" title="Select All"
+                                                            style="display:none">
+                                                        </th>
+
+                                                        <th><img class="pr-1" src="vendors/images/icon-letter-format.svg"
+                                                                alt="">Barangays</th>
+
+                                                        <th><img class=" pr-1" src="vendors/images/icon-link.svg"
+                                                                alt="">Request</th>
+
+                                                        <th class="justify-content-center">
+                                                            <img class="pr-1 pb-1" src="vendors/images/icon-status.svg"
+                                                                alt="">Status
+                                                        </th>
+
+                                                        <th class=""><img class="mb-1 pr-1"
+                                                                src="vendors/images/icon-date.svg" alt="">Date Allocated
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    if (isset($_POST['search-submittedTbl']) && !empty(trim($_POST['search-submittedTbl']))) {
+                                                        $search = mysqli_real_escape_string($db, $_POST['search-submittedTbl']);
+                                                        $sql = "SELECT doc_name, govarea, status, DATE_FORMAT(time_submitted, '%m/%d/%Y') AS f_date FROM mov WHERE doc_name LIKE '%$search%' OR govarea LIKE '%$search%' OR status LIKE '%$search%' ";
+                                                        $_POST['search-submittedTbl'] = '';
+                                                    } else {
+                                                        $sql = "SELECT * FROM dl_request WHERE status = 'Approved'";
+                                                    }
+
+                                                    $result_submittedTbl = mysqli_query($db, $sql);
+                                                    while ($row = mysqli_fetch_assoc($result_submittedTbl)):
+                                                        ?>
+                                                        <tr>
+                                                            <td class="" style="display:none" id="checkboxestable">
+                                                                <input class="unverifiedMOVsCheckbox" type="checkbox"
+                                                                    name="selectedRowsVerified[]"
+                                                                    value="<?php echo $row['req_code']; ?>" />
+                                                            </td>
+
+
+                                                            <td class="td-text-truncate-250">
+                                                                <?php
+                                                                $namebarangay = $row['barangay'];
+                                                                $name = mysqli_query($db, "SELECT * FROM users WHERE username = '$namebarangay'");
+                                                                $fetchname = mysqli_fetch_assoc($name);
+                                                                echo $fetchname['name']; ?>
+                                                            </td>
+
+                                                            <td>
+                                                                <a
+                                                                    href="admin-view-request.php?req_code=<?php echo $row['req_code']; ?>">
+                                                                    <?php echo $row['govareas']; ?>
+                                                            </td>
+
+                                                            <td class="d-flex justify-content-center">
+                                                                <?php
+                                                                $status = $row['status'];
+                                                                $badgeColor = ($status == 'Pending') ? '#BFD1E0' : (($status == 'Approved') ? '#34C041' : (($status == 'Rejected') ? '#FF0335' : 'default_color'));
+                                                                ?>
+                                                                <span class="badge badge-pill"
+                                                                    style="background-color: <?php echo $badgeColor; ?>"
+                                                                    data-color="#000">
+                                                                    <?php echo $status; ?>
+                                                                </span>
+                                                            </td>
+
+                                                            <td>
+                                                                <?php
+                                                                $dateRequested = date_create($row['date_allocated']);
+                                                                echo date_format($dateRequested, 'm/d/Y');
+                                                                ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endwhile; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Table END -->
+
+                                <!-- Table Footer -->
+                                <div class="d-flex justify-content-end mx-4">
+                                    <!-- Row number selector -->
+                                    <div class="mr-auto">
+
+                                        <div id="deleteSectionVerified" style="display: none;">
+                                            <div id="deleteSectionVerified">
+                                                <button id="deleteSelectedRowsVerified" class="btn btn-danger"
+                                                    onclick="deleteSelectedRowsVerified()">Delete Selected</button>
+                                                <button id="cancelDeleteVerified" class="btn btn-secondary"
+                                                    onclick="cancelDeleteVerified()">Cancel</button>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            class="d-none unverifiedMOVS-operation primary-UnverifiedMOVOperation btn btn-sm mr-3 "></button>
+                                        <button class="d-none unverifiedMOVS-operation btn btn-sm btn-secondary weight-500"
+                                            id="cancelUnverifiedMOVOperation">Cancel</button>
+                                    </div>
+                                    <div class="">
+                                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                                            <label class="d-inline-block">Rows per page</label>
+                                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                                class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="-1">All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                        <ul class="pagination">
+                                            <li class="paginate_button page-item previous disabled"
+                                                id="DataTables_Table_0_previous"><a href="#"
+                                                    aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0"
+                                                    class="page-link"><i class="ion-chevron-left"></i></a></li>
+                                            <li class="paginate_button page-item next" id="DataTables_Table_0_next"><a
+                                                    href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0"
+                                                    class="page-link"><i class="ion-chevron-right"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Table Footer END -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <div class="footer-wrap pd-10 px-5">
+            © Copyright <span class="font-weight-bold">Department of Interior and Local Government Santa Rosa City.</span>
+            All Rights Reserved.
+        </div>
+
+        <!-- js -->
+        <script src="vendors/scripts/core.js"></script>
+        <script src="vendors/scripts/script.js"></script>
+
+
+        <!-- For the first table -->
+        <script>
+            function toggleDeleteSection() {
+                var deleteSection = document.getElementById('deleteSection');
+                deleteSection.style.display = (deleteSection.style.display === 'none') ? 'block' : 'none';
+
+                var selectAllHeader = document.getElementById('selectAllHeader');
+                selectAllHeader.style.display = (deleteSection.style.display === 'none') ? 'none' : 'table-cell';
+
+                var checkboxes = document.querySelectorAll('input[name="selectedRows[]"]');
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.closest('td').style.display = (deleteSection.style.display === 'none') ? 'none' : 'table-cell';
+                });
+            }
+
+            function deleteSelectedRows() {
+                var selectedRows = document.querySelectorAll('input[name="selectedRows[]"]:checked');
+                var reqCodes = Array.from(selectedRows).map(row => row.value);
+
+                if (reqCodes.length > 0) {
+                    var confirmation = confirm("Are you sure you want to delete the selected rows?");
+                    if (confirmation) {
+                        // Redirect to your deletion script with selected req_codes
+                        window.location.href = 'admin-delete-requests.php?req_codes=' + reqCodes.join(',');
+                    }
+                } else {
+                    alert("Please select rows to delete.");
+                }
+            }
+
+            function cancelDelete() {
+                var deleteSection = document.getElementById('deleteSection');
+                deleteSection.style.display = 'none';
+
+                var selectAllHeader = document.getElementById('selectAllHeader');
+                selectAllHeader.style.display = 'none';
+
+                var checkboxes = document.querySelectorAll('input[name="selectedRows[]"]');
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.closest('td').style.display = 'none';
+                });
+            }
+        </script>
+
+        <!-- For the Second Table -->
+        <script>
+            function toggleDeleteSectionVerified() {
+                var deleteSection = document.getElementById('deleteSectionVerified');
+                deleteSection.style.display = (deleteSection.style.display === 'none') ? 'block' : 'none';
+
+                var selectAllHeader = document.getElementById('selectAllHeaderVerified');
+                selectAllHeader.style.display = (deleteSection.style.display === 'none') ? 'none' : 'table-cell';
+
+                var checkboxes = document.querySelectorAll('input[name="selectedRowsVerified[]"]');
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.closest('td').style.display = (deleteSection.style.display === 'none') ? 'none' : 'table-cell';
+                });
+            }
+
+            function deleteSelectedRowsVerified() {
+                var selectedRows = document.querySelectorAll('input[name="selectedRowsVerified[]"]:checked');
+                var reqCodes = Array.from(selectedRows).map(row => row.value);
+
+                if (reqCodes.length > 0) {
+                    var confirmation = confirm("Are you sure you want to delete the selected rows?");
+                    if (confirmation) {
+                        // Redirect to your deletion script with selected req_codes
+                        window.location.href = 'admin-delete-requests.php?req_codes=' + reqCodes.join(',');
+                    }
+                } else {
+                    alert("Please select rows to delete.");
+                }
+            }
+
+            function cancelDeleteVerified() {
+                var deleteSection = document.getElementById('deleteSectionVerified');
+                deleteSection.style.display = 'none';
+
+                var selectAllHeader = document.getElementById('selectAllHeaderVerified');
+                selectAllHeader.style.display = 'none';
+
+                var checkboxes = document.querySelectorAll('input[name="selectedRowsVerified[]"]');
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.closest('td').style.display = 'none';
+                });
+            }
+        </script>
+
+
+    </body>
+
+    </html>
+<?php } else {
+    echo "<script>alert('Access denied.');</script>";
+} ?>

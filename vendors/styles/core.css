@@ -73,6 +73,7 @@
     --border: #ECEFF4;
     --green: #1DB82B;
     --red: #FF0033;
+    --darkred: #d10830;
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -3081,7 +3082,7 @@ input[type=submit].btn-block {
     -ms-user-select: none;
     user-select: none;
     background-color: transparent;
-    border: 1px solid transparent;
+    border: 1px solid transparent; /*annoying fucking border for the buttons at view-request. once removed, natatanggal din ung sa selectpicker. */
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -5806,7 +5807,7 @@ fieldset:disabled a.btn {
     line-height: 1.25;
     color: var(--darkpink);
     background-color: #fff;
-    border: 1px solid #dee2e6
+    /* border: 1px solid #dee2e6 */
 }
 
 .page-link:hover {
@@ -15845,4 +15846,9 @@ select.selectpicker {
 	border: 0 !important;
     color: #4a98e8;
     right: 10px;
+}
+
+/* Newly Added */
+iframe {
+    border: none;
 }

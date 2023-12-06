@@ -170,6 +170,7 @@ p {
 .pr-30{padding-right: 30px;}
 .pl-10{padding-left: 10px;}
 .pl-20{padding-left: 20px;}
+.pl-25{padding-left: 25px;}
 .pl-30{padding-left: 30px;}
 .margin-5{margin: 5px;}
 .mt-15{margin-top: 15px;}
@@ -640,7 +641,7 @@ textarea.form-control{
 	font-weight: 600;
 }
 .breadcrumb-item a{
-	color: #031e23;
+	color: #1b3b41;
 }
 .breadcrumb-item + .breadcrumb-item::before{
 	font-family: "FontAwesome";

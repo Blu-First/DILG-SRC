@@ -20,15 +20,10 @@
   }
   
   body {
-    background-image: url('/vendors/images/background.png');
+    background-image: url('../images/background.png');
     background-attachment: fixed;
     background-size: cover;
     background-position: 20% 60%;
-    background-color: rgba(211, 211, 211, 0.3) ;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh; */
   }
   
   *{
@@ -89,28 +84,6 @@
   
   .forgot-password {
     text-align: right;
-  }
-  
-i.icon-left {
-    position: absolute;
-    top: 50%;
-    left: 4%;
-    transform: translateY(-50%);
-}
-  
-  .icon-user {
-    background: url('/vendors/images/icon-person.svg');
-  }
-  
-  .icon-lock {
-    background: url('/vendors/images/icon-lock.svg');
-  }
-  
-  .icon-user, .icon-lock{
-    height: 16px;
-    width: 16px;
-    background-size: cover;
-    display: block;
   }
   
   /* reference https://stackoverflow.com/questions/6722467/how-do-i-remove-the-default-link-color-of-the-html-hyperlink-a-tag */
