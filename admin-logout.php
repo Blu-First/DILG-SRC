@@ -1,8 +1,7 @@
 <?php
 session_start();
 $old_session_id = session_id();
-unset($_SESSION);
-unset($POST);
+unset($_SESSION['emp_id']);
     echo '<script>';
     echo 'localStorage.clear();';
     echo '</script>';

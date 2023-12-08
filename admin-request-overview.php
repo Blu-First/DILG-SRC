@@ -273,6 +273,10 @@ if (isset($_SESSION["emp_id"])) {
                         </div>
                     </div>
                 </div>
+
+                <!-- MODALS for View Reminder -->
+                <?php include('modals-multiView-reminder.php'); ?>
+
             </div>
         </div>
         <!-- MOVs END -->
@@ -304,7 +308,26 @@ if (isset($_SESSION["emp_id"])) {
         <!-- <script src="vendors/scripts/options-select.js"></script> -->
 
 
-        <!-- For the first table -->
+        <?php
+        if (isset($_SESSION['view']) && is_array($_SESSION['view']) && !empty($_SESSION['view'])) {
+            $doc_count = count($_SESSION['view']);
+            echo "
+        <script>
+            var flag = confirm('This will open $doc_count tab(s). Do you want to proceed?');
+            if (flag) {
+    ";
+            foreach ($_SESSION['view'] as $value) {
+                echo "window.open('admin-view-request.php?req_code=$value', '_blank');";
+            }
+            echo "
+            }
+        </script>
+    ";
+
+            // Unset the 'view' session variable after using it
+            unset($_SESSION['view']);
+        }
+        ?>
 
 
 

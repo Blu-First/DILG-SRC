@@ -48,27 +48,40 @@ if (
 
     $combinedConditions = implode(' AND ', $movOvwsearchConditions);
 
-    if ($_POST['docStatusSelectMOVOvw'] !== 'all' &&  $_POST['docStatusSelectMOVOvw'] !== 'Verified') {
+    if($_POST['docStatusSelectMOVOvw'] == 'all' && empty($combinedConditions)){
+        $sql = "SELECT mov.doc_id, users.Name, mov.doc_name, mov.govarea, mov.status, DATE_FORMAT(mov.time_submitted, '%m/%d/%Y') AS f_date 
+                FROM mov 
+                INNER JOIN users ON mov.user_id = users.user_id";
+        $_SESSION['movOvwSelectQueries'] = $sql;
+
+    }else if($_POST['docStatusSelectMOVOvw'] == 'all' && !empty($combinedConditions)){
+        $sql = "SELECT mov.doc_id, users.Name, mov.doc_name, mov.govarea, mov.status, DATE_FORMAT(mov.time_submitted, '%m/%d/%Y') AS f_date 
+                FROM mov 
+                INNER JOIN users ON mov.user_id = users.user_id
+                WHERE $combinedConditions";
+        $_SESSION['movOvwSelectQueries'] = $sql;
+
+    } else if ($_POST['docStatusSelectMOVOvw'] == 'Verified') {
+        $sql = "SELECT mov.doc_id, users.Name, mov.doc_name, mov.govarea, mov.status, DATE_FORMAT(mov.time_submitted, '%m/%d/%Y') AS f_date 
+                FROM mov 
+                INNER JOIN users ON mov.user_id = users.user_id 
+                WHERE $combinedConditions AND mov.status = 'Verified'";
+        $_SESSION['movOvwSelectQueries'] = $sql;
+
+    } else if ( !empty($combinedConditions)) {
         $sql = "SELECT mov.doc_id, users.Name, mov.doc_name, mov.govarea, mov.status, DATE_FORMAT(mov.time_submitted, '%m/%d/%Y') AS f_date 
                 FROM mov 
                 INNER JOIN users ON mov.user_id=users.user_id 
                 WHERE $combinedConditions AND mov.status <> 'Verified'";
         $_SESSION['movOvwSelectQueries'] = $sql;
-    } else if (!empty($combinedConditions)) {
-        $sql = "SELECT mov.doc_id, users.Name, mov.doc_name, mov.govarea, mov.status, DATE_FORMAT(mov.time_submitted, '%m/%d/%Y') AS f_date 
-                FROM mov 
-                INNER JOIN users ON mov.user_id=users.user_id 
-                WHERE $combinedConditions";
-        $_SESSION['movOvwSelectQueries'] = $sql;
-    }
-    // echo '<script>';
-    // echo 'alert(' . json_encode(json_encode($sql)) . ');';  // Double encode to make sure it's treated as a string
-    // echo 'alert(JSON.parse(' . json_encode($sql) . '));';  // Parse the JSON string to a JavaScript object
-    // echo '</script>';
 
-    header("Location: admin-mov-overview.php");
-    exit();
+    }
+    
+
+}else{
+    unset($_SESSION['movOvwSelectQueries']);
 }
+// echo $_SESSION['movOvwSelectQueries'];
 
 // Mov Verified Dropdown Handler
 $movVerifiedsearchConditions = [];
@@ -118,8 +131,8 @@ if (
         $_SESSION['movVerifiedSelectQueries'] = $sql;
     }
 
-    header("Location: admin-mov-overview.php");
-    exit();
+}else{
+    unset($_SESSION['movVerifiedSelectQueries']);
 }
 
 
@@ -246,6 +259,7 @@ if (isset($_POST['view'])) {
     echo 'window.location.href = "admin-mov-overview.php";';
     echo '</script>';
 }
+
 
 if (isset($_POST['download'])) {
     $directoryPath = "vendors/documents/MOVs/";
@@ -407,3 +421,5 @@ if (isset($_POST['download'])) {
         
     }
 }
+
+header("Location: admin-mov-overview.php");

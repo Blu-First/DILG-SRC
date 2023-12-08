@@ -69,7 +69,7 @@ $(function () {
     const unverifiedMOVsCheckboxesElements = document.querySelectorAll('.unverifiedMOVsCheckboxtd');
 
 
-    $('#movsOverviewTbl').DataTable({
+    const movsOverviewTbl = $('#movsOverviewTbl').DataTable({
         scrollCollapse: true,
         autoWidth: false,
         responsive: true,
@@ -112,7 +112,7 @@ $(function () {
                 // Append the provided HTML to the 'movOvwSelect' element
                 $('#movOvwSelect').append(`   
                      
-                    <select name="brgySelectMOVOvw" id="brgySelectMOVOvw" onchange="this.form.submit()"
+                    <select name="brgySelectMOVOvw" id="brgySelectMOVOvw" 
                         class="brgySelect col-md-4 col-sm-8 my-2 selectpicker dropup"
                         data-dropup-auto="false" title="Select Barangay"
                         data-style="btn-outline-primary">
@@ -137,7 +137,7 @@ $(function () {
                         <option value="Tagapo">Tagapo</option>
                     </select>
                 
-            <select id="criteriaSelectMOVOvw" name="criteriaSelectMOVOvw[]" onchange="this.form.submit()"
+            <select id="criteriaSelectMOVOvw" name="criteriaSelectMOVOvw[]" 
                 class="criteriaSelect selectpicker dropup col-md-4 col-sm-8 my-2"
                 data-dropup-auto="false" data-style="btn-outline-primary" data-size="6"
                 data-width="175px" multiple data-actions-box="true"
@@ -154,7 +154,7 @@ $(function () {
                 </optgroup>
             </select>
     
-            <select name="docStatusSelectMOVOvw" id="docStatusSelectMOVOvw" onchange="this.form.submit()"
+            <select name="docStatusSelectMOVOvw" id="docStatusSelectMOVOvw" 
                 class="submStatusSelect selectpicker col-md-4 col-sm-8 my-2"
                 title="Select Status" data-style="btn-outline-primary">
                 <option value="">Select Status</option>
@@ -167,17 +167,73 @@ $(function () {
             </select>
                 `);
             }
-            const criteriaSelect = document.getElementById('criteriaSelectMOVOvw');
 
-            if (criteriaSelect) {
-                criteriaSelect.addEventListener('blur', function () {
-                    let selectedValues = $('#criteriaSelectMOVOvw').val();
-                    console.log(selectedValues);
+            // Save selectpicker blur state
+            let blurState = false;
 
-                    // Trigger form submission
-                    this.form.submit();
-                });
+            // Function to retrieve values from localStorage and set them in the selects
+            function retrieveSelectValues() {
+                let brgySelectValue = localStorage.getItem('brgySelectValue');
+                let criteriaSelectValues = JSON.parse(localStorage.getItem('criteriaSelectValues'));
+                let docStatusSelectValue = localStorage.getItem('docStatusSelectValue');
+
+                $('#brgySelectMOVOvw').val(brgySelectValue);
+                $('#criteriaSelectMOVOvw').val(criteriaSelectValues);
+                $('#docStatusSelectMOVOvw').val(docStatusSelectValue);
+
+                // Trigger the selectpicker to update the displayed selections
+                $('.selectpicker').selectpicker('refresh');
             }
+
+            // Event handler for focus on searchbox
+            $('.bs-searchbox .form-control').on('focus', function () {
+                if (!blurState) {
+                    $(this).blur();
+                    blurState = true;
+                    console.log(blurState);
+                }
+            });
+
+            function arraysEqual(arr1, arr2) {
+                return JSON.stringify(arr1) === JSON.stringify(arr2);
+            }
+
+            // Event handler for hide.bs.select
+            $('.selectpicker').on('hide.bs.select', function () {
+                blurState = false;
+                console.log(blurState);
+
+                // Retrieve stored values from localStorage
+                let storedBrgySelectValue = localStorage.getItem('brgySelectValue');
+                let storedCriteriaSelectValues = JSON.parse(localStorage.getItem('criteriaSelectValues'));
+                let storedDocStatusSelectValue = localStorage.getItem('docStatusSelectValue');
+
+                // Get the current values
+                let currentBrgySelectValue = $('#brgySelectMOVOvw').val();
+                let currentCriteriaSelectValues = $('#criteriaSelectMOVOvw').val();
+                let currentDocStatusSelectValue = $('#docStatusSelectMOVOvw').val();
+
+                // Check if any value has changed
+                if (
+                    currentBrgySelectValue !== storedBrgySelectValue ||
+                    !arraysEqual(currentCriteriaSelectValues, storedCriteriaSelectValues) ||
+                    currentDocStatusSelectValue !== storedDocStatusSelectValue
+                ) {
+                    // Store the new values in localStorage
+                    localStorage.setItem('brgySelectValue', currentBrgySelectValue);
+                    localStorage.setItem('criteriaSelectValues', JSON.stringify(currentCriteriaSelectValues));
+                    localStorage.setItem('docStatusSelectValue', currentDocStatusSelectValue);
+
+                    // Submit the form only if values have changed
+                    $('#unverifiedMOVTable').submit();
+                }
+            });
+
+            // Call the function to retrieve values when the DOM is fully loaded
+            $(document).ready(function () {
+                retrieveSelectValues();
+            });
+
 
             if ($('#movOvwActions').length > 0) {
                 // Append the provided HTML to the 'movOvwSelect' element
@@ -221,7 +277,7 @@ $(function () {
                 $('#movsOverviewFooter').prepend(`
                     <div class="mr-auto">
                     <button type="button"
-                        class="d-none unverifiedMOVS-operation primary-UnverifiedMOVOperation btn btn-sm mr-3 "></button>
+                        class="d-none unverifiedMOVS-operation primary-UnverifiedMOVOperation btn btn-sm mr-3 " disabled></button>
                     <button type="button" class="d-none unverifiedMOVS-operation btn btn-sm btn-secondary weight-500"
                         id="cancelUnverifiedMOVOperation">Cancel</button>
                     </div>
@@ -331,7 +387,7 @@ $(function () {
                 });
             }
 
-            initViewUnverifiedMOVBtn.addEventListener('click', function() {
+            initViewUnverifiedMOVBtn.addEventListener('click', function () {
                 $('#viewReminder').modal('show');
             });
 
@@ -426,47 +482,53 @@ $(function () {
                     }
                 });
             }
-            let dlbtn = document.querySelector('.primary-UnverifiedMOVOperation');
-            console.log(dlbtn);
-            dlbtn.addEventListener('click', function () {
-                if (dlbtn.name === 'download') {
-                    // Serialize form data or prepare your data as needed
-                    const formData = new FormData();
-                    formData.append('download', 'true');
-                    formData.append('movsOvw[]'); // Add your file IDs dynamically
 
-                    // Perform AJAX request
-                    fetch('admin-mov-tbl-action.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.blob();
-                        })
-                        .then(blob => {
-                            // Create a temporary link and trigger a click to download the file
-                            const downloadLink = document.createElement('a');
-                            downloadLink.href = URL.createObjectURL(blob);
-                            downloadLink.download = 'downloaded_file_' + fileId + '.zip'; // You can set a default name or customize it
-                            document.body.appendChild(downloadLink);
-                            downloadLink.click();
-                            document.body.removeChild(downloadLink);
-                        })
-                        .catch(error => {
-                            console.error('Error during fetch operation:', error);
-                        });
+            function selectAllOptions() {
+                const selectElement = document.querySelector('#movsOverviewTbl_length select[name="DataTables_Table_0_length"]');
+                const options = selectElement.options;
+
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value === "-1") {
+                        options[i].selected = true;
+                    } else {
+                        options[i].selected = false;
+                    }
                 }
+            }
 
-            });
+
+
 
         }
     });
-    //END MOVS Overview Table
 
+    $('#unverifiedMOVS-checkAll').on('click', function () {
+        // Your logic here when "unverifiedMOVS-checkAll" is clicked
+        if ($(this).prop('checked')) {
+            $('#movsOverviewTbl_paginate').hide();
+            $('.primary-UnverifiedMOVOperation').prop('disabled', false);
+        } else {
+            $('#movsOverviewTbl_paginate').show();
+            $('.primary-UnverifiedMOVOperation').prop('disabled', true);
+        }
+    });
 
+    unverifiedMOVsCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            // Check if all checkboxes are not checked
+            if ([...unverifiedMOVsCheckboxes].every(cb => !cb.checked)) {
+                // All checkboxes are not checked
+                console.log('All checkboxes are not checked');
+                $('#movsOverviewTbl_paginate').show();
+                $('.primary-UnverifiedMOVOperation').prop('disabled', true);
+            } else {
+                // At least one checkbox is checked
+                console.log('At least one checkbox is checked');
+                $('#movsOverviewTbl_paginate').hide();
+                $('.primary-UnverifiedMOVOperation').prop('disabled', false);
+            }
+        });
+    })
 
     // Movs Verified Table
     const verifiedMOVsCheckboxtd = document.querySelectorAll('.verifiedMOVsCheckboxtd'); // td class
@@ -507,7 +569,7 @@ $(function () {
         "initComplete": function (settings, json) {
             if ($('#movsVerifiedSelect').length > 0) {
                 $('#movsVerifiedSelect').append(`
-                <select name="brgySelectMOVVerified" id="brgySelectMOVVerified" onchange="this.form.submit()"
+                <select name="brgySelectMOVVerified" id="brgySelectMOVVerified"
                 class="brgySelect col-md-6 col-sm-8 my-2 selectpicker dropup"
                 data-dropup-auto="false" title="Select Barangay"
                 data-style="btn-outline-primary">
@@ -531,7 +593,7 @@ $(function () {
                     <option value="Sinalhan">Sinalhan</option>
                     <option value="Tagapo">Tagapo</option>
                 </select>
-                <select name="criteriaSelectMOVVerified[]" id="criteriaSelectMOVVerified" onchange="this.form.submit()"
+                <select name="criteriaSelectMOVVerified[]" id="criteriaSelectMOVVerified"
                     class="selectpicker criteriaSelect dropup col-md-6 col-sm-8 my-2"
                     data-dropup-auto="false" data-style="btn-outline-primary" data-size="6"
                     data-width="175px" multiple data-actions-box="true"
@@ -549,6 +611,66 @@ $(function () {
                 </select>
                 `);
             }
+
+            // Save selectpicker blur state
+            let blurState = false;
+
+            // Function to retrieve values from localStorage and set them in the selects
+            function retrieveSelectValues() {
+                let brgySelectValue = localStorage.getItem('brgySelectMOVVerified');
+                let criteriaSelectValues = JSON.parse(localStorage.getItem('criteriaSelectMOVVerified'));
+
+                $('#brgySelectMOVVerified').val(brgySelectValue);
+                $('#criteriaSelectMOVVerified').val(criteriaSelectValues);
+
+                // Trigger the selectpicker to update the displayed selections
+                $('.selectpicker').selectpicker('refresh');
+            }
+
+            // Event handler for focus on searchbox
+            $('.bs-searchbox .form-control').on('focus', function () {
+                if (!blurState) {
+                    $(this).blur();
+                    blurState = true;
+                    console.log(blurState);
+                }
+            });
+
+            function arraysEqual(arr1, arr2) {
+                return JSON.stringify(arr1) === JSON.stringify(arr2);
+            }
+
+            // Event handler for hide.bs.select
+            $('.selectpicker').on('hide.bs.select', function () {
+                blurState = false;
+                console.log(blurState);
+
+                // Retrieve stored values from localStorage
+                let storedBrgySelectValue = localStorage.getItem('brgySelectMOVVerified');
+                let storedCriteriaSelectValues = JSON.parse(localStorage.getItem('criteriaSelectMOVVerified'));
+
+                // Get the current values
+                let currentBrgySelectValue = $('#brgySelectMOVVerified').val();
+                let currentCriteriaSelectValues = $('#criteriaSelectMOVVerified').val();
+
+                // Check if any value has changed
+                if (
+                    currentBrgySelectValue !== storedBrgySelectValue ||
+                    !arraysEqual(currentCriteriaSelectValues, storedCriteriaSelectValues)
+                ) {
+                    // Store the new values in localStorage
+                    localStorage.setItem('brgySelectMOVVerified', currentBrgySelectValue);
+                    localStorage.setItem('criteriaSelectMOVVerified', JSON.stringify(currentCriteriaSelectValues));
+
+                    // Submit the form only if values have changed
+                    $('#verifiedMOVTable').submit();
+                }
+            });
+
+            // Call the function to retrieve values when the DOM is fully loaded
+            $(document).ready(function () {
+                retrieveSelectValues();
+            });
 
             if ($('#movsVerifiedActions').length > 0) {
                 $('#movsVerifiedActions').prepend(`
@@ -601,7 +723,7 @@ $(function () {
                 $('#movsVerifiedFooter').prepend(`
                     <div class="mr-auto">
                         <button type="button"
-                            class="d-none verifiedMOVS-operation primary-VerifiedMOVOperation btn btn-sm mr-3 "></button>
+                            class="d-none verifiedMOVS-operation primary-VerifiedMOVOperation btn btn-sm mr-3 " disabled></button>
                         <button  type="button" class="d-none verifiedMOVS-operation btn btn-sm btn-secondary weight-500"
                             id="cancelVerifiedMOVOperation">Cancel</button>
                     </div>
@@ -695,7 +817,7 @@ $(function () {
                 });
             }
 
-            initViewVerifiedMOVBtn.addEventListener('click', function() {
+            initViewVerifiedMOVBtn.addEventListener('click', function () {
                 $('#viewReminder').modal('show');
             });
 
@@ -831,9 +953,37 @@ $(function () {
                 }
 
             });
-            
+
         }
     });
+
+    $('#verifiedMOVS-checkAll').on('click', function () {
+        // Your logic here when "unverifiedMOVS-checkAll" is clicked
+        if ($(this).prop('checked')) {
+            $('#movsVerifiedTbl_paginate').hide();
+            $('.primary-VerifiedMOVOperation ').prop('disabled', false);
+        } else {
+            $('#movsVerifiedTbl_paginate').show();
+            $('.primary-VerifiedMOVOperation ').prop('disabled', true);
+        }
+    });
+
+    verifiedMOVsCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            // Check if all checkboxes are not checked
+            if ([...verifiedMOVsCheckboxes].every(cb => !cb.checked)) {
+                // All checkboxes are not checked
+                console.log('All checkboxes are not checked');
+                $('#movsVerifiedTbl_paginate').show();
+                $('.primary-VerifiedMOVOperation ').prop('disabled', true);
+            } else {
+                // At least one checkbox is checked
+                console.log('At least one checkbox is checked');
+                $('#movsVerifiedTbl_paginate').hide();
+                $('.primary-VerifiedMOVOperation ').prop('disabled', false);
+            }
+        });
+    })
 
     const brgySelectOptions = [
         { value: 'all', label: 'All' },
@@ -1016,7 +1166,7 @@ $(function () {
                 $('#reqsOverviewFooter').prepend(`
                     <div class="mr-auto">
                     <button type="button"
-                        class="d-none reqOverviewOperation primary-reqOverviewOperation btn btn-sm mr-3 "></button>
+                        class="d-none reqOverviewOperation primary-reqOverviewOperation btn btn-sm mr-3 " disabled></button>
                     <button type="button" class="d-none reqOverviewOperation btn btn-sm btn-secondary weight-500"
                         id="cancelreqOverviewOperation">Cancel</button>
                     </div>
@@ -1143,6 +1293,10 @@ $(function () {
                 });
             }
 
+            initViewUnverifiedMOVBtn.addEventListener('click', function () {
+                $('#viewReminder').modal('show');
+            });
+
             const cancelUnverifiedMOVBtn = document.getElementById('cancelreqOverviewOperation');
             if (cancelUnverifiedMOVBtn) {
                 // The cancelUnverifiedMOVBtn element is present, so add the event listener
@@ -1187,6 +1341,34 @@ $(function () {
         },
 
     });
+
+    $('#reqOverviewSelectAll').on('click', function () {
+        // Your logic here when "unverifiedMOVS-checkAll" is clicked
+        if ($(this).prop('checked')) {
+            $('#reqOverviewTbl_paginate').hide();
+            $('.primary-reqOverviewOperation ').prop('disabled', false);
+        } else {
+            $('#reqOverviewTbl_paginate').show();
+            $('.primary-reqOverviewOperation ').prop('disabled', true);
+        }
+    });
+
+    unverifiedReqCheckbox.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            // Check if all checkboxes are not checked
+            if ([...unverifiedReqCheckbox].every(cb => !cb.checked)) {
+                // All checkboxes are not checked
+                console.log('All checkboxes are not checked');
+                $('#reqOverviewTbl_paginate').show();
+                $('.primary-reqOverviewOperation ').prop('disabled', true);
+            } else {
+                // At least one checkbox is checked
+                console.log('At least one checkbox is checked');
+                $('#reqOverviewTbl_paginate').hide();
+                $('.primary-reqOverviewOperation ').prop('disabled', false);
+            }
+        });
+    })
 
     // Request Verified Table
 
@@ -1296,7 +1478,7 @@ $(function () {
                 $('#reqsVerifiedFooter').prepend(`
                     <div class="mr-auto">
                     <button type="button"
-                        class="d-none reqVerifiedOperation primary-reqVerifiedOperation btn btn-sm mr-3 "></button>
+                        class="d-none reqVerifiedOperation primary-reqVerifiedOperation btn btn-sm mr-3 " disabled></button>
                     <button type="button" class="d-none reqVerifiedOperation btn btn-sm btn-secondary weight-500"
                         id="cancelreqVerifiedOperation">Cancel</button>
                     </div>
@@ -1417,6 +1599,10 @@ $(function () {
                 });
             }
 
+            initViewUnverifiedMOVBtn.addEventListener('click', function () {
+                $('#viewReminder').modal('show');
+            });
+
             const cancelUnverifiedMOVBtn = document.getElementById('cancelreqVerifiedOperation');
             if (cancelUnverifiedMOVBtn) {
                 // The cancelUnverifiedMOVBtn element is present, so add the event listener
@@ -1462,6 +1648,34 @@ $(function () {
 
     });
 
+    $('#reqVerifiedSelectAll').on('click', function () {
+        // Your logic here when "unverifiedMOVS-checkAll" is clicked
+        if ($(this).prop('checked')) {
+            $('#reqVerifiedTbl_paginate').hide();
+            $('.primary-reqVerifiedOperation  ').prop('disabled', false);
+        } else {
+            $('#reqVerifiedTbl_paginate').show();
+            $('.primary-reqVerifiedOperation  ').prop('disabled', true);
+        }
+    });
+
+    verifiedReqCheckbox.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            // Check if all checkboxes are not checked
+            if ([...verifiedReqCheckbox].every(cb => !cb.checked)) {
+                // All checkboxes are not checked
+                console.log('All checkboxes are not checked');
+                $('#reqVerifiedTbl_paginate').show();
+                $('.primary-reqVerifiedOperation  ').prop('disabled', true);
+            } else {
+                // At least one checkbox is checked
+                console.log('At least one checkbox is checked');
+                $('#reqVerifiedTbl_paginate').hide();
+                $('.primary-reqVerifiedOperation  ').prop('disabled', false);
+            }
+        });
+    })
+
     $('#financialSubmissionTbl').DataTable({
         scrollCollapse: true,
         autoWidth: false,
@@ -1469,7 +1683,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1480,10 +1694,19 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',
@@ -1498,7 +1721,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1509,15 +1732,22 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',
-                last: '<i class="ion-chevron-right"></i><i class="ion-chevron-right"></i>',
-                first: '<i class="ion-chevron-left"></i><i class="ion-chevron-left"></i>',
             }
         },
     });
@@ -1529,7 +1759,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1540,10 +1770,19 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',
@@ -1558,7 +1797,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1569,10 +1808,19 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',
@@ -1587,7 +1835,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1598,10 +1846,19 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',
@@ -1616,7 +1873,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1627,10 +1884,19 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',
@@ -1645,7 +1911,7 @@ $(function () {
         searching: false,
         bLengthChange: true,
         bPaginate: true,
-        pagingType: "full_numbers", // with first and last paging button
+        pagingType: "simple", 
         bInfo: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -1656,10 +1922,19 @@ $(function () {
         // t = table dom
         // l = length menu (rows per page) dom
         // p = pagination dom
-        // inthis case only table and pagination so t and p are added
-        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".ml-auto mb-4" p>',
+        // inthis case only table and pagination so t and l p are added
+        dom: '<"pl-5 pr-4 mt-5 mb-4" t><".d-flex justify-content-end mb-4" lp>',
         lengthMenu: [[5, 10, 25, -1], [5, 10, 25, "All"]],
         language: {
+            lengthMenu: '<label class="d-inline-block ml-auto">Rows per page</label>' +
+                '<select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" ' +
+                'class="width-fit custom-select custom-select-sm form-control form-control-sm mx-3">' +
+                '<option value="5">5</option>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select>',
             paginate: {
                 next: '<i class="ion-chevron-right"></i>',
                 previous: '<i class="ion-chevron-left"></i>',

@@ -17,19 +17,20 @@ if (
     $sql = "SELECT * FROM dl_request WHERE barangay LIKE '%$search%' AND status = 'Pending'";
     $_SESSION['reqOvwSelectQueries'] = $sql;
     
-    header("Location: admin-request-overview.php");
-    exit();
+}else{
+    unset($_SESSION['reqOvwSelectQueries']);
 }
 
+
 if (
-    (isset($_POST['brgySelectreqVerified']) && !empty($_POST['brgySelectreqVerified'])  && $_POST['brgySelectreqOvw'] !== 'all') 
+    (isset($_POST['brgySelectreqVerified']) && !empty($_POST['brgySelectreqVerified'])  && $_POST['brgySelectreqVerified'] !== 'all') 
 ) {
     $search = mysqli_real_escape_string($db, $_POST['brgySelectreqVerified']);
     $sql = "SELECT * FROM dl_request WHERE barangay LIKE '%$search%' AND status = 'Approved'";
     $_SESSION['reqVerifiedSelectQueries'] = $sql;
     
-    header("Location: admin-request-overview.php");
-    exit();
+}else{
+    unset($_SESSION['reqVerifiedSelectQueries']);
 }
 
 
@@ -111,25 +112,30 @@ if(isset($_POST['reqVerifiedDelete'])){
 
 if(isset($_POST['view']) ){
     if (isset($_POST['reqOvw']) && is_array($_POST['reqOvw']) && !empty($_POST['reqOvw'])) {
-        // Loop through each value in the "reqOvw" array
-        foreach ($_POST['reqOvw'] as $value) {         
-            echo "<script>window.open('admin-view-request.php?req_code=$value', '_blank');</script>";
+        if (!isset($_SESSION['view'])) {
+            $_SESSION['view'] = array();
+        }
+
+        // Loop through each value in the "movVerified" array and store in the session
+        foreach ($_POST['reqOvw'] as $value) {
+            $_SESSION['view'][] = $value;
         }
 
     }
     if (isset($_POST['reqVerified']) && is_array($_POST['reqVerified']) && !empty($_POST['reqVerified'])) {
-        // Loop through each value in the "reqOvw" array
-        foreach ($_POST['reqVerified'] as $value) {         
-            echo "<script>window.open('admin-view-request.php?req_code=$value', '_blank');</script>";
+        if (!isset($_SESSION['view'])) {
+            $_SESSION['view'] = array();
+        }
+
+        // Loop through each value in the "movVerified" array and store in the session
+        foreach ($_POST['reqVerified'] as $value) {
+            $_SESSION['view'][] = $value;
         }
 
     }
-        echo '<script>';
-        echo 'window.location.href = "admin-request-overview.php";';
-        echo '</script>';
 
 }
 
-
+header("Location: admin-request-overview.php");
 
 ?>
